@@ -19,4 +19,5 @@
             }
         }
     });
+    $(".table-list li:eq(0)").addClass("active");
 }());

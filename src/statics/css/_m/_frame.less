@@ -1,5 +1,5 @@
 @indent-lr: 12pt;
-@title-size: 34pt;
+@title-size: 36pt;
 @header-height: 88pt;
 @footer-height: 98pt;
 
@@ -26,6 +26,7 @@ header{
   background-color: #018be6;
   .back{
     position: absolute;
+    top: 0;
     left: @indent-lr;
     vertical-align: middle;
     > i{
@@ -38,6 +39,11 @@ header{
   .header-text{
     font-size: @title-size;
     text-align: center;
+  }
+  .right-side{
+    position: absolute;
+    top: 0;
+    right: @indent-lr;
   }
 }
 footer{
