@@ -1,0 +1,23 @@
+@import "_mixin";
+/* 水平排列的列表 */
+.hlist{
+  .clearfix;
+  li{
+    float: left;
+  }
+}
+.form-list{
+  &.nopadding{
+    padding: 0;
+  }
+}
+.table-list{
+  display: table;
+  width: 100%;
+  height: 100%;
+  > li{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+}

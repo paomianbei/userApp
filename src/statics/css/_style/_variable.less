@@ -1,0 +1,67 @@
+/* 基本色系列 start */
+@font-color: #333;//字体的基本颜色
+@placeholder-color: #a9a9a9;
+@gray-border: #a0a0a0;//大部分控件的边框颜色
+@border-color: #b4b4b4;//容器边框色和底线颜色
+@default-bg: #f0f0f0;
+/* 基本色系列 end */
+
+/* 禁用色 （input、button、select）start*/
+@disabled-color: #999;//被禁用的元素的字体颜色
+@disabled-bg: #ebebe4;//被禁用的元素的背景色
+@disabled-border: #d3d3d3;//被禁用的元素的边框色
+/* 禁用色 end*/
+
+/* 灰色按钮系列 start */
+@btn-gray-bg: #999;
+@btn-gray-border: #888;
+@btn-gray-color: #fff;
+/* 灰色按钮系列 end */
+
+/* 蓝色按钮系列 start */
+@blue-basic: #12a4de;       //系统的主题蓝色
+@blue-basic-border: #079bd4;//边框
+/* 蓝色按钮系列 end */
+
+/* 蓝色面板系列 start */
+@tab-blue-theme: #3b8bd8;//tab选项卡的主题颜色
+@panel-blue-theme: #007eb0;//panel面板的边框色
+/* 蓝色面板系列 start */
+
+
+/* 红色按钮系列 start */
+@btn-red-bg: #de575d;
+@btn-red-border: #db373e;
+@btn-red-color: #fff;
+/* 红色按钮系列 end */
+
+/*  表格基本色 start */
+@table-bg-even: #f0f0f0;
+@table-bg-hover: #f5f5f5;
+/*  表格基本色 end */
+
+/* 尺寸 start */
+@control-width: 160px;
+@control-height: 32px;
+@control-radius: 4px;
+@control-padding-tb: 12px;
+@control-padding-lr: @control-padding-tb;
+@control-valign: middle;
+
+@input-width: @control-width;
+@input-height: @control-height;
+@input-radius: @control-radius;
+
+@btn-height: 32px;
+@btn-radius: 4px;
+
+//控件排版，在书写上有空行，会造成4px的误差（谷歌，其它浏览器没测试）
+@newline-space: 4px;
+//.form-group的上下边距  查询条件区域10px，编辑页面20px
+@form-group-tb: 10px;
+@form-group-tb-lg: 20px;
+//.form-group的水平边距
+@form-group-lr: 10px - @newline-space;
+@form-group-lr-lg: 30px - @newline-space;
+/* 尺寸 end */
+

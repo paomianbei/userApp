@@ -1,0 +1,215 @@
+.table-wrap{
+  margin: 0 auto;
+  color: #000;
+}
+table.dataTable{
+  margin: 0!important;//dataTables.bootstrap强制6px
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #fff;
+  word-break: break-all;
+  word-wrap: break-word;
+  thead, tbody{
+    td,th{
+      text-align: center;
+      vertical-align: middle;
+    }
+    td{
+      &.cell-left{text-align: left;}
+      &.cell-center{text-align: center;}
+      &.cell-right{text-align: right;}
+
+      &.text-left{text-align: left;}
+      &.text-center{text-align: center;}
+      &.text-right{text-align: right;}
+    }
+  }
+}
+table.table-bordered{
+  //border-collapse: collapse!important;//dataTables.bootstrap.css强制设置成了separate
+}
+table.firstRow{
+  tbody tr:first-child td:not(.dataTables_empty){
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #eaf7fe;
+  }
+}
+.table-sort{
+  .sorting_1{
+    background-color: #eaf7fe;
+  }
+}
+thead{
+  td, th{
+    text-align: center;
+  }
+}
+.dataTables_scrollHead{
+  &.scroll{
+    width: calc(~"100% - 17px")!important;
+    height: auto;
+  }
+  .dataTables_scrollHeadInner{
+    padding-right: 0!important;
+    width: 100%!important;//表头的宽度是插件自动计算出来的，宽度比实际要小2px，外层容器正常
+    box-sizing: border-box!important;
+  }
+}
+@media (-webkit-min-device-pixel-ratio:0){
+  .dataTables_scrollHead.scroll{
+    //表头滚动需要减去滚动条的宽度
+    width: calc(~"100% - 6px")!important;
+  }
+}
+.dataTables_scrollBody{
+  thead th{
+    line-height: 0;
+  }
+}
+.table-increment{
+  display: inline;
+  input[type="checkbox"]{
+    margin: 0 10px 0 0;
+    width: 14px;
+    height: 14px;
+    vertical-align: top;
+  }
+  span{
+    position: absolute;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+  }
+}
+/* 底部工具条 start */
+//.dataTables_wrapper .bottom{
+//  margin: 15px 0 10px;
+//  color: #707070;
+//  text-align: center;
+//  span{
+//    margin: 0;
+//    line-height: 20px;
+//  }
+//  span, .dataTables_info{
+//    font-size: 12px;
+//  }
+//  /* 分页信息文字 start*/
+//  div.dataTables_info{
+//    float: none;
+//    display: inline;
+//    padding-top: 0;
+//    margin-left: 10px;
+//    &:not(:empty):before{
+//      content: " [ ";
+//    }
+//    &:not(:empty):after{
+//      content: " ] ";
+//    }
+//  }
+//  /* 分页信息文字 end*/
+//  /* 分页条 start*/
+//  .toolbar{
+//    display: inline;
+//    div{display: inline;}
+//    .action, [data-action]{
+//      cursor: pointer;
+//      margin-right: 26px;
+//      > .normalIcon{
+//        position: relative;
+//        top: -2px;
+//        margin-right: 10px;
+//      }
+//    }
+//  }
+//  .toolbar, .pagination, .dataTables_info{
+//    vertical-align: middle;
+//  }
+//  .dataTables_paginate{
+//    display: inline;
+//    .pagination{
+//      margin-bottom: 0;
+//    }
+//    .paginate_button{
+//      min-width: 20px;
+//      line-height: 18px;
+//      display: inline-block;
+//      a{
+//        padding: 2px 7px;
+//        line-height: 16px;
+//        border: none;
+//        &:hover{
+//          background-color: #eee;
+//        }
+//        &, &:focus{
+//          color: inherit;
+//          border-color: transparent;
+//          background-color: transparent;
+//        }
+//      }
+//      &.active a{
+//        background-color: #666;
+//        color: #fff;
+//      }
+//      &.previous, &.next{
+//        margin: 0 10px 6px;
+//        width: 0;
+//        min-width: 0;
+//        height: 0;
+//        border-style: solid;
+//        border-width: 4px 6px 4px 1px;/* 上一页，左箭头 */
+//        border-color: transparent #666;
+//        border-radius: 0;
+//        background: transparent;
+//        cursor: pointer;
+//        a{
+//          display: none;
+//        }
+//      }
+//      /* 下一页，右箭头 */
+//      &.next{
+//        border-width: 4px 1px 4px 6px;
+//      }
+//    }
+//  }
+//  /* 分页条 end*/
+//  /* 导入table工具栏上的图标 */
+//  /* 自定义分页个数样式 */
+//  .dataTables_length{
+//    position: relative;
+//    top: 2px;//和其它项对齐
+//    display: inline;
+//    margin-right: 20px;
+//    select{
+//      margin-bottom: 2px;
+//      padding: 0;
+//      width: 50px;
+//      height: 20px;
+//      font-size: 12px;
+//      border: 1px solid @gray-border;
+//      vertical-align: baseline;
+//    }
+//  }
+//}
+/* 底部工具条 end */
+.normal-table{
+  .ellipsis div{
+    display: inline;
+  }
+  .line-break{
+    white-space: normal!important;
+  }
+}
+.forsize{
+  opacity: 0;
+  filter: ~"alpha(opacity=0)";
+  position: absolute;
+  z-index: -99;
+  table{
+    width: auto!important;
+    table-layout: fixed;
+  }
+  td{
+    display: inline-block;
+  }
+}

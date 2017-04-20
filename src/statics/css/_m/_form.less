@@ -1,0 +1,118 @@
+/* 表单样式
+  标签使用form，样式使用.from，这两种写法具有相同的样式。默认是垂直布局
+
+    一组表单元素通常包含一个label和一个或多个控件，使用.form-group把这一组元素包裹起来
+
+    .form-group默认是块布局，如果希望在垂直表单中使用水平布局，把多个.form-group使用.form-inline包裹起来
+    字段的名称：
+      使用label标签，样式使用.control-label。label标签默认和.control-label具有相同样式
+
+    字段对应的控件：
+      控件可以直接跟在标签后面，如果希望能得到更好的排版，建议使用.control-group
+
+    字段对应的查看内容：
+      在详情页面表单中，表单元素对应不是控件，而是文本内容，文本内容推荐使用span标签，class有.control-text
+      内容在区域右边并且右对齐
+
+*/
+
+@import (reference)"_var";
+@import (reference)"_mixin";
+/* 变量 */
+@label-color: #232323;
+@text-color: #93959e;
+@legend-color: #6e6e70;
+@border-group: #c8c7cc;
+
+@legend-size: 26pt;
+
+
+@indent-left: 30pt;
+@indent-right: @indent-left;
+@indent-bottom: 30pt;
+
+@group-height: 86pt;
+
+.m-control-label(){
+  display: inline-block;
+  vertical-align: @control-valign;
+}
+
+
+
+form, .form{
+  .clearfix();
+  font-size: 30pt;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  fieldset{
+    border-bottom: 1px solid @border-group;
+    &:first-child{
+      margin-top: 0;
+    }
+    &:last-child{
+      margin-bottom: 0;
+      padding-bottom: @indent-bottom;
+      >.form-group:last-child{
+        border-bottom: 1px solid @border-group;
+      }
+    }
+  }
+  legend{
+    margin-bottom: 0; // bootstrap
+    padding: 38pt @indent-left 0;
+    border-bottom: 1px solid @border-group;
+    font-size: @legend-size;
+    line-height: 62pt;
+    color: @legend-color;
+    background-color: #efeff4;
+
+  }
+  .form-group, .form-inline, &.form-inline{
+    .clearfix();
+    margin-bottom: 0; // bootstrap
+    margin-left: @indent-left;
+    padding: 22pt @indent-left 22pt 0;
+    border-bottom: 1px solid @border-group;
+    &:last-child, .form-group, .form-inline{
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+  }
+  label, span{
+    margin-bottom: 0;
+    vertical-align: @control-valign;
+  }
+}
+.form-group{
+  position: relative;
+  .control-label, >label:first-child{
+    color: @label-color;
+    line-height: 1;
+    .m-control-label;
+    >label{
+      display: inline;
+    }
+  }
+  .control-text{
+    float: right;
+    color: @text-color;
+  }
+  .control-group{
+    display: inline-block;
+  }
+  &, .control-group{
+    > * + *{
+      margin-left: @form-group-lr-lg;
+    }
+  }
+}
+.form-inline{
+  > .form-group, > .form-inline{
+    display: inline-block;
+    margin-left: 30pt - @newline-space;
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+}

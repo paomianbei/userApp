@@ -1,0 +1,95 @@
+@import (reference)"_variable";
+table, .table>tbody>tr.active>td, .table>tbody>tr.active>th, .table>tbody>tr>td.active, .table>tbody>tr>th.active, .table>tfoot>tr.active>td, .table>tfoot>tr.active>th, .table>tfoot>tr>td.active, .table>tfoot>tr>th.active, .table>thead>tr.active>td, .table>thead>tr.active>th, .table>thead>tr>td.active, .table>thead>tr>th.active{
+  background-color: #fff;
+}
+
+.ui-jqgrid{
+  @border-color: #E1E1E1;
+  @radius: 5px;
+  /* 表格边框 start */
+  &, .ui-jqgrid-hdiv .ui-jqgrid-htable, .ui-jqgrid-bdiv .ui-jqgrid-btable{
+    border: none;
+  }
+  .ui-jqgrid-hdiv, .ui-jqgrid-bdiv, .ui-jqgrid-pager{
+    border-style: solid;
+    border-color: @border-color;
+    border-width: 2px 2px 0;
+  }
+  .ui-jqgrid-hdiv{
+    border-top-left-radius: @radius;
+    border-top-right-radius: @radius;
+  }
+  .ui-jqgrid-pager{
+    border-top-width: 1px;
+    border-bottom-width: 2px;
+    border-bottom-left-radius: @radius;
+    border-bottom-right-radius: @radius;
+  }
+  .ui-jqgrid-labels{
+    border-left-width: 0;
+  }
+  .ui-jqgrid-labels th:last-child{
+    border-right-width: 0;
+  }
+  tr.ui-row-ltr td, tr.ui-row-rtl td{
+    &:last-child{
+      border-right-width: 0;
+    }
+  }
+  /* 表格边框 end */
+  /* 多行表头时，会在第一行多出一行空的表头 */
+  .ui-first-th-ltr{
+    padding: 0!important;
+  }
+
+  th[id$="_cb"]{
+    text-align: center;
+  }
+  input[type=checkbox]{
+    display: inline-block;
+  }
+  tr.even td{
+    &, &.active{
+      background-color: @table-bg-even;
+    }
+  }
+  tbody tr.success td, tbody tr td.success{
+    &, &.active{
+      background-color: #dff0d8;
+    }
+  }
+  tbody tr.active td{
+    &, &.active{
+      background-color: #d3f0f1;
+    }
+  }
+  .ui-jqgrid-sortable{
+    padding-left: 0;
+  }
+  .ui-jqgrid-resize{
+    position: absolute;
+    right: 0;
+    height: 24px!important; // 20px !important
+  }
+  .ui-jqgrid-htable thead th{
+    position: relative;
+    background-color: #f5f5f5;
+  }
+  .ui-jqgrid-htable thead th, .ui-jqgrid-btable tbody tr.jqgrow td{
+    padding: 6px 8px;
+    vertical-align: middle;
+  }
+  /* 工具栏 start */
+  .ui-pg-button span, .ui-pg-selbox{
+    margin-top: -6px;
+  }
+  .ui-pg-input{
+    position: relative;
+    top: -1px;
+    margin: 0 5px;
+  }
+  .ui-pg-input, .ui-pg-selbox{
+    font-size: 1em;
+  }
+  /* 工具栏 end */
+}

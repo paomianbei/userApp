@@ -1,0 +1,22 @@
+.error-tip{
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  margin-top: -9px;
+  padding-left: 20px;
+  height: 17px;
+  font-size: 12px;
+  line-height: 17px;
+  color: #ba0c15;
+  background: url(../images/prompt.png) no-repeat;
+  &.multi-tip{
+    top: inherit;
+    margin-top: 3px;
+  }
+  div&, &.bottom{
+    top: inherit;
+    left: inherit;
+    display: block;//absolute+inherit 火狐下需要显示设置成块级元素，初始位置才能换到下一行显示
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,53 @@
+@import (reference) "_variable";
+@import (reference) "_mixin";
+@import (reference) "../../../../libs/bootstrap/all/variables";
+@import (reference) "../../../../libs/bootstrap/all/mixins/buttons";
+.m-btn(){
+  padding: 5px 10px;
+  height: @btn-height;
+  font-size: 14px;
+  border-width: 1px; // ace.css border: 5px
+  border-radius: @btn-radius;
+}
+.btn{
+  .m-btn();
+  min-width: 68px;
+  &.blue{
+    color: #fff;
+    border-color: @blue-basic-border;
+    background-color: @blue-basic;
+  }
+  &:focus, &.focus, &:active, &.active, &:active:focus, &.active:focus, &:active.focus, &.active.focus{
+    outline: none;
+  }
+  .m-control-disabled;
+}
+.btn-unchecked{
+  .button-variant(@btn-gray-color; @btn-gray-bg; @btn-gray-border);
+}
+.btn-checked, .btn-red{
+  .button-variant(@btn-red-color; @btn-red-bg; @btn-red-border);
+}
+
+.btn-default {
+  .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+}
+.btn-primary {
+  .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+}
+// Success appears as green
+.btn-success {
+  .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+}
+// Info appears as blue-green
+.btn-info {
+  .button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+}
+// Warning appears as orange
+.btn-warning {
+  .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
+}
+// Danger and error appear as red
+.btn-danger {
+  .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
+}

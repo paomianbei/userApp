@@ -1,0 +1,47 @@
+@margin_list: 5,10,15,20;
+@v_from: 0;
+@v_to: 30;
+@v_gap: 5;
+._(@v) when(@v <= @v_to){
+  @uv: @v + 0px;
+  /* margin */
+  .m-@{v}{margin: @uv;}
+
+  .mt-@{v}{margin-top: @uv;}
+  .mr-@{v}{margin-right: @uv;}
+  .mb-@{v}{margin-bottom: @uv;}
+  .ml-@{v}{margin-left: @uv;}
+
+  .mlr-@{v}{margin-left: @uv; margin-right: @uv;}
+  .mtb-@{v}{margin-top: @uv; margin-bottom: @uv;}
+
+  ._mt-@{v}{margin: @uv 0 0;}
+  ._mr-@{v}{margin: 0 @uv 0 0;}
+  ._mb-@{v}{margin: 0 0 @uv;}
+  ._ml-@{v}{margin: 0 0 0 @uv;}
+
+  ._mlr-@{v}{margin: 0 @uv;}
+  ._mtb-@{v}{margin: @uv 0;}
+
+  /* padding */
+  .p-@{v}{padding: @uv;}
+  .pt-@{v}{padding-top: @uv;}
+  .pr-@{v}{padding-right: @uv;}
+  .pb-@{v}{padding-bottom: @uv;}
+  .pl-@{v}{padding-left: @uv;}
+
+  .plr-@{v}{padding-left: @uv; padding-right: @uv;}
+  .ptb-@{v}{padding-top: @uv; padding-bottom: @uv;}
+
+  ._pt-@{v}{padding: @uv 0 0;}
+  ._pr-@{v}{padding: 0 @uv 0 0;}
+  ._pb-@{v}{padding: 0 0 @uv;}
+  ._pl-@{v}{padding: 0 0 0 @uv;}
+
+  ._plr-@{v}{padding: 0 @uv;}
+  ._ptb-@{v}{padding: @uv 0;}
+
+  /* 递归调用 */
+  ._(@v + @v_gap);
+}
+._(@v_from);

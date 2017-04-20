@@ -1,0 +1,185 @@
+@import (inline) "../../lib/combobox/css/combobox.css";
+@import (reference)"_variable";
+@import (reference)"_mixin";
+@padding-tb: 3px;
+@padding-lr: 4px;
+.m-combobox(){
+  .combobox{
+    .m-input;
+    min-height: 24px;
+    box-sizing: border-box;
+    cursor: default;
+    .placeholder{
+      color: #a9a9a9;
+    }
+    .deselect{
+      right: 21px;
+      margin-top: -3px;
+      width: 8px;
+      height: 8px;
+      background-position: -26px -6px;
+    }
+    .drop{
+      right: 5px;
+      width: 11px;
+      &.up{
+        top: 10px;
+      }
+    }
+    [data-type="viewitem"]{
+      overflow: hidden;
+    }
+  }
+  .combobox-drop{
+    padding-top: @padding-tb;
+    border: 1px solid @gray-border;
+    border-radius: @input-radius 0 0;
+    background-color: #fff;
+    ul{
+      &:hover .selectedlight{
+        background-color: transparent;
+        a{
+          color: @font-color;
+        }
+      }
+    }
+    .search{
+      padding: 0 @padding-lr @padding-tb;
+      height: auto; //gome.css
+      border: none;
+      input{
+        .m-input();
+        width: 100%;
+      }
+    }
+    .list{
+      margin: 0 @padding-lr @padding-tb 0;
+      padding: 0 0 0 @padding-lr;
+    }
+    li{
+      height: 24px;
+      line-height: 24px;
+    }
+    li[data-type="item"]:hover, .selectedlight, .cursorlight{
+      background-color: #1e90ff;
+      a{
+        color: #fff;
+      }
+    }
+  }
+  .combobox, .combobox-drop{
+    font-size: 12px;
+    color: @font-color;
+    a{
+      padding: 0;
+      cursor: inherit;
+      overflow: hidden;
+    }
+  }
+  .combobox i, .combobox-drop .input-search {
+    background-image: url(../lib/combobox/images/gray.png);
+  }
+  .combobox-drop .list li{
+    padding-left:  @control-padding-lr;
+    padding-right:  @control-padding-lr;
+  }
+}
+//chosen
+.m-chosen(){
+  @single-height: @control-height;
+  @multi-height: 30px;
+  .m-close(){
+    &, &:hover{
+      background-position: -40px 2px;
+    }
+  }
+  .chosen-container{
+    width: @control-width;
+    min-height: @single-height;
+    font-size: 12px;
+    font-family: "Microsoft YaHei", "微软雅黑";
+    line-height: 0;
+    background-color: #fff;
+    .chosen-single, .chosen-choices{
+      .m-control-basic();
+    }
+    &.chosen-container-multi{
+      min-height: @multi-height;
+    }
+    .chosen-drop{
+      padding-top: @padding-tb;
+      border: 1px solid @gray-border;
+    }
+    .chosen-results{
+      margin: 0 @padding-lr @padding-tb 0;
+      padding: 0 0 0 @padding-lr;
+    }
+  }
+  .chosen-disabled{
+    opacity: 1 !important; // chosen.css  --> 0.5!important
+    .chosen-single, .chosen-choices{
+      .m-control-disabled-content;
+    }
+  }
+  .chosen-container-single{
+    .chosen-single{
+      padding-left: @control-padding-lr;
+      min-height: @control-height;
+      .search-choice-close{
+        right: 21px;
+        .m-close();
+      }
+    }
+    .chosen-search{
+      padding-top: 0;
+      input[type="text"]{
+        .m-input();
+        width: 100%;
+      }
+    }
+  }
+  .chosen-container-single .chosen-single, .chosen-choices, .chosen-container-active.chosen-with-drop .chosen-single{
+    background: #fff;//去掉渐变色
+    box-shadow: none;
+  }
+
+  .chosen-container-multi .chosen-choices{
+    padding: 0 @control-padding-lr;
+    min-height: @multi-height;
+    &, li.search-choice{
+      background: transparent;
+      box-shadow: none;
+    }
+    li.search-choice{
+      padding: 0 22px 0 6px;
+      line-height: 20px;
+      border-radius: @control-radius;
+      span{
+        vertical-align: top;
+      }
+      .search-choice-close{
+        .m-close();
+      }
+    }
+  }
+  .chosen-container-active .chosen-choices{
+    border: 1px solid @blue-basic;
+    box-shadow: none;
+  }
+}
+//drop-selection
+.m-drop-selection(){
+  .form-group{
+    .drop-selection-label, .drop-selection-label label{
+      margin-top: -1px;
+      line-height: 30px;
+      vertical-align: top;
+    }
+  }
+  .drop-selection .placeholder{
+    padding-left: 6px!important;
+  }
+}
+.m-combobox();
+.m-chosen();
+.m-drop-selection();

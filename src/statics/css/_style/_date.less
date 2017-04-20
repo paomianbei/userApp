@@ -1,0 +1,58 @@
+@import (reference)"_variable";
+@import (reference)"_mixin";
+/* 日期控件  bootstrap daterangepicker */
+.daterange{
+  width: 180px;
+}
+.daterangepicker .calendar th, .daterangepicker .calendar td{
+  font-family: "Microsoft YaHei", "微软雅黑";
+}
+.laydate-icon, .laydate-icon-default, .laydate-icon-danlan, .laydate-icon-dahong, .laydate-icon-molv{
+  height: @input-height;
+  border: 1px solid @gray-border;
+  vertical-align: @control-valign;
+  background: url('../../gome/calendars_03.png') ~"98% 50%/16px" no-repeat #fff;
+  cursor: pointer;
+}
+//调整选择范围和确定按钮信息的大小行高
+.daterangepicker{
+  margin: 0!important;
+  line-height: 1.7;
+  &.show-calendar{
+    min-width: 606px;
+    &.z-top{
+      z-index: 99999999;
+    }
+  }
+  .btn-primary(){
+    background-color: @blue-basic;
+    border-color: @blue-basic-border;
+    color: #fff;
+  }
+  .daterangepicker_start_input label, .daterangepicker_end_input label{
+    line-height: 26px;
+  }
+  .ranges{
+    .input-mini{
+      .m-input();
+      width: 100px;
+    }
+    .range_inputs{
+      .applyBtn, .cancelBtn{
+        .m-btn();
+      }
+      .applyBtn{
+        .btn-primary();
+      }
+    }
+  }
+  .button-content{
+    width: auto!important;//style中设置了百分比，有时会导致宽度不够
+    button{
+      vertical-align: top;
+    }
+  }
+  td.active, td.active:hover {
+    .btn-primary();
+  }
+}

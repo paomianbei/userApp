@@ -1,0 +1,156 @@
+html, body {
+  height: 100%;
+}
+body{
+  font-size: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #999;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 100;
+}
+h1 {
+  font-size: 30px;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 16px;
+}
+h4 {
+  font-size: 14px;
+}
+h5 {
+  font-size: 12px;
+}
+h6 {
+  font-size: 10px;
+}
+h1,h2,h3,h4,h5,h6{
+  font-weight: normal;
+}
+table{
+  border-collapse: collapse;
+}
+ul,ol,dl{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  cursor: pointer;
+}
+a:focus {
+  outline: none;
+}
+label{
+  margin-bottom: 0;// bootstrap 5px
+}
+/********************************************/
+
+[v-cloak]{
+  visibility: hidden;
+}
+.scroll{height: 100%;overflow: auto;}
+.fullheight, .full-height{
+  height: 100%;
+}
+.fullwidth, .full-width{
+  width: 100%;
+}
+.fitwidth, .fit-width{
+  width: auto!important;
+}
+.fitheight, .fit-height{
+  height: auto!important;
+}
+.valign-top{
+  vertical-align: top!important;
+}
+.valign-middle{
+  vertical-align: middle!important;
+}
+.valign-baseline{
+  vertical-align: baseline!important;
+}
+.valign-bottom{
+  vertical-align: bottom!important;
+}
+
+.absolute{
+  position: absolute!important;
+}
+.inline{
+  display: inline!important;
+}
+.inline-block{
+  display: inline-block!important;
+}
+.block{
+  display: block!important;
+}
+.display-table{
+  display: table!important;
+}
+.hide{
+  display: none!important;
+}
+.overflow-hidden{
+  overflow: hidden!important;
+}
+.clearfix{
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+.point{
+  cursor: pointer;
+}
+.link{
+  text-decoration: underline;
+}
+.visited:visited, .visited:visited:hover{
+  color: #551a8b;
+}
+.bg-f0{
+  background-color: #f0f0f0;
+}
+
+.ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.disabled, :disabled{
+  &{
+    cursor: not-allowed!important;
+  }
+  &:not(.btn){
+    color: @disabled-color;
+  }
+}
+label{
+  margin-bottom: 0;// bootstrap 5px
+  font-weight: normal;
+}

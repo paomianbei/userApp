@@ -1,0 +1,75 @@
+@indent-lr: 12pt;
+@title-size: 34pt;
+@header-height: 88pt;
+@footer-height: 98pt;
+
+html, body{
+  background-color: #fff;
+}
+body{
+  font-family: Hiragino;
+  line-height: 1;
+}
+header, footer{
+  position: fixed;
+  z-index: 1; // 防止后面的元素的默认层级高过头部和尾部
+  padding: 0 @indent-lr;
+  width: 100%;
+  color: #fff;
+}
+header{
+  top: 0;
+  height: @header-height;
+  font-size: 32pt;
+  line-height: @header-height;
+  color: #fff;
+  background-color: #018be6;
+  .back{
+    position: absolute;
+    left: @indent-lr;
+    vertical-align: middle;
+    > i{
+      font-size: 1.5em;
+    }
+    > i, .back-text{
+      vertical-align: middle;
+    }
+  }
+  .header-text{
+    font-size: @title-size;
+    text-align: center;
+  }
+}
+footer{
+  bottom: 0;
+  padding-bottom: 12pt;
+  height: @footer-height;
+  font-size: 20pt;
+  color: #929292;
+  background-color: #f7f7f7;
+  i{
+    display: block;
+    margin-bottom: 10pt;
+    font-size: 34pt;
+  }
+  .table-list{
+    > li{
+      vertical-align: bottom;
+    }
+  }
+  .active{
+    color: #007aff;
+  }
+}
+
+.main{
+  padding-top: @header-height;
+  margin-bottom: @footer-height;
+}
+.search-group{
+  padding: 15pt;
+  .input-group{
+    height: 56pt;
+    background-color: #e9e8e7;
+  }
+}

@@ -1,0 +1,153 @@
+@import (reference)"_variable";
+@import (reference)"_mixin";
+.m-control-label(){
+  display: inline-block;
+  font-size: 14px;
+  vertical-align: @control-valign;
+  text-align: justify;
+  text-align-last: justify;
+  text-justify: distribute;
+}
+//表单中一行排列了多个表单元素，在低分辨率中一行显示不下，可以在媒体查询中使用此方法把表单元素换到下一行中显示
+
+//.form-condition中每个
+.m-form-break(){
+  .form-condition{
+    .form-break, .line-break{
+      display: block;
+      margin-top: @form-group-tb!important;
+    }
+  }
+}
+.m-form-break(@form)when(@form = form){
+  form, .form{
+    .form-break, .line-break{
+      display: block;
+      margin-top: @form-group-tb!important;
+    }
+  }
+}
+
+fieldset{
+  margin-top: @form-group-tb-lg;
+  margin-bottom: @form-group-tb-lg;
+}
+legend{
+  padding-bottom: @form-group-tb-lg;
+  font-size: 16px;
+  border-bottom: 1px solid @border-color;
+}
+
+.borderset{
+  margin-bottom: 4px;
+  padding: 15px;
+  border: 1px solid @border-color;
+  border-radius: @input-radius;
+  .form, .form-condition, .table-condition{
+    padding: 0;
+  }
+}
+form, .form{
+  padding: 15px;
+  font-size: 12px;
+  color: @font-color;
+  .clearfix();
+  * + *{
+    margin-left: @form-group-lr-lg;
+  }
+  fieldset{
+    &:first-child{
+      margin-top: 0;
+    }
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  .form-group, .form-inline, &.form-inline{
+    .clearfix();
+    //margin-bottom: @form-group-tb-lg;
+    &:last-child, .form-group, .form-inline{margin-bottom: 0}
+    &.line-height{
+      line-height: @control-height - 2;
+    }
+    &.line-height-lg{
+      line-height: 28px;//多选下拉组件的高度是30px，和它并列浮动的控件高度应该是28px
+    }
+    &.line-height, &.line-height-lg{
+      >:not(label):not(:first-child), >:not(span):not(:first-child), >:not(.control-label){
+        line-height: normal;
+      }
+    }
+  }
+  label, span{
+    margin-bottom: 0;
+    vertical-align: @control-valign;
+  }
+  .input{
+    cursor: default;
+  }
+  .i-checks label{
+    vertical-align: baseline;
+    cursor: pointer;
+  }
+}
+.form-float{
+  .clearfix();
+  .form-inline > .form-group{
+    float: left;
+  }
+  .form-group, .form-inline{
+    .clearfix();
+  }
+}
+.form-condition{
+  .form;
+  .form-group, .form-inline{
+    margin-bottom: @form-group-tb;
+  }
+}
+.table-condition{
+  .form-condition;
+  margin-bottom: 6px;
+}
+.form-group{
+  position: relative;
+  .control{
+    line-height: normal;
+  }
+  .control-label, >label:first-child{
+    line-height: 1;
+    .m-control-label;
+    >label{
+      display: inline;
+    }
+  }
+  .control-group{
+    display: inline-block;
+  }
+  &, .control-group{
+    > * + *{
+      margin-left: @form-group-lr-lg;
+    }
+  }
+}
+.form-inline{
+  > .form-group, > .form-inline{
+    display: inline-block;
+    margin-left: 30px - @newline-space;
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+}
+.form-group.compact-space{
+  .clearfix;
+  >*{
+    float: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.fa-search, .icon-serach{
+  cursor: pointer;
+}

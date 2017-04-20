@@ -1,0 +1,271 @@
+/* 城市、品类下拉组件 */
+.drop-selection {
+  position: relative;
+  display: inline-block;
+  width: 700px;
+  font-size: 12px;
+  line-height: 1;
+  border: 1px solid #a0a0a0;
+  border-radius: 2px;
+  background-color: #fff;
+  vertical-align: middle;
+}
+.drop-selection.disabled {
+  border-color: #d3d3d3;
+  background-color: #ebebe4;
+}
+.drop-selection.disabled .icon-drop::after {
+  border-top-color: #ebebe4;
+}
+.drop-selection.disabled.expand .icon-drop::after {
+  border-bottom-color: #ebebe4;
+}
+.drop-selection ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.drop-selection .placeholder {
+  padding-left: 6px;
+  padding-right: 20px;
+  min-height: 28px;
+  line-height: 28px;
+  color: #a9a9a9;
+}
+.drop-selection .icon-drop {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  margin-top: -3px;
+  border-color: #6a6a6a;
+}
+.drop-selection .icon-drop:before,
+.drop-selection .icon-drop:after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 5px 6px 0;
+}
+.drop-selection .icon-drop:before {
+  border-top-color: inherit;
+}
+.drop-selection .icon-drop:after {
+  top: -2px;
+  border-top-color: #fff;
+}
+.drop-selection.expand .icon-drop:before,
+.drop-selection.expand .icon-drop:after {
+  border-top-width: 0;
+  border-bottom-width: 5px;
+}
+.drop-selection.expand .icon-drop:before {
+  border-bottom-color: inherit;
+}
+.drop-selection.expand .icon-drop:after {
+  top: 2px;
+  border-bottom-color: #fff;
+}
+.drop-selection .selection-list {
+  padding-right: 25px;
+}
+.drop-selection .selection-list .selection-item {
+  position: relative;
+  display: inline-block;
+  margin: 3px 3px;
+  padding: 0 20px 0 5px;
+  line-height: 20px;
+  border: 1px solid #a0a0a0;
+}
+.drop-selection .selection-list .icon-deselect {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  margin-top: -3px;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  background: url(images/icon.png) 0 0 no-repeat transparent;
+}
+.drop-selection .drop-list {
+  left: -1px;
+  box-sizing: content-box;
+  width: 100%;
+  font-size: 14px;
+}
+.drop-selection .title {
+  line-height: 24px;
+}
+.drop-selection .search-input {
+  margin-bottom: 0;
+}
+.focusPanel .panel-content {
+  position: relative;
+  z-index: 2;
+}
+.focusPanel .default-focus {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  opacity: 0;
+}
+.focusPanel .default-focus:focus,
+.focusPanel .default-focus:active {
+  outline: none;
+}
+.drop-list {
+  position: absolute;
+  z-index: 100;
+  width: 700px;
+  border: 1px solid #a0a0a0;
+  border-radius: 2px;
+  background-color: #fff;
+}
+.drop-list li {
+  display: inline-block;
+  margin: 5px;
+}
+.drop-list .link {
+  color: #333;
+  cursor: pointer;
+}
+.drop-list .link:hover {
+  color: #12a4de;
+}
+.drop-list .link:hover,
+.drop-list .link:focus {
+  text-decoration: underline;
+}
+.drop-list a,
+.drop-list input,
+.drop-list a:focus,
+.drop-list input:focus,
+.drop-list a:active,
+.drop-list input:active {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.drop-list.full-width {
+  width: 100%;
+}
+.drop-list .selectedlight a {
+  color: #12a4de;
+}
+.drop-list a.active {
+  color: #12a4de;
+}
+.drop-list .table-list {
+  padding: 10px 25px 0;
+}
+.drop-list .table-list .title,
+.drop-list .table-list .content {
+  display: table-cell;
+}
+.drop-list .table-list .title {
+  float: left;
+}
+.drop-list .search-group {
+  position: relative;
+  z-index: 2;
+  margin: 10px 25px 15px;
+}
+.drop-list .search-group .drop-list {
+  left: 0;
+}
+.drop-list .search-result {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  border: 1px solid #d3d3d3;
+  border-radius: 2px;
+  background-color: #fff;
+  overflow-y: auto;
+}
+.drop-list .input-group {
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  border-radius: 2px;
+  color: #666;
+}
+.drop-list .input-group .search-input {
+  width: 100%;
+  height: 30px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  color: inherit;
+}
+.drop-list .input-group .icon-search {
+  display: table-cell;
+  width: 25px;
+  border: none;
+  background: none;
+}
+.drop-list .input-group .icon-search:before {
+  content: "";
+  display: block;
+  width: 13px;
+  height: 13px;
+  border: none;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  cursor: default;
+  background: url(images/icon.png) 0 -13px no-repeat transparent;
+}
+.drop-list .nav-tabs {
+  border-top: 1px solid #3b8bd8;
+  background-color: #f0f0f0;
+}
+.drop-list .nav-tabs li {
+  margin: 0;
+}
+.drop-list .nav-tabs li a {
+  margin: 0;
+  padding-left: 20px;
+}
+.drop-list .nav-tabs .active a,
+.drop-list .nav-tabs .active a:focus,
+.drop-list .nav-tabs .active a:active {
+  color: #3b8bd8;
+}
+.drop-list .nav-tabs .active,
+.drop-list .tab-content .active {
+  background-color: #fff;
+}
+.drop-list .tab-content {
+  padding: 5px 25px 0;
+}
+.drop-list .tab-content li {
+  margin: 0;
+  display: inline-block;
+  line-height: 40px;
+}
+.drop-list .list li {
+  margin-right: 10px;
+}
+.drop-list .list .title {
+  width: 30px;
+}
+.drop-list .list-group {
+  margin-bottom: 0;
+}
+.drop-list .list-group > li {
+  display: block;
+}
+.drop-list .drop-list {
+  border: none;
+}
+.drop-list .divition:not(:empty),
+.drop-list .tab-content .divition:not(:empty) {
+  display: block;
+  border-bottom: 1px solid #ccc;
+}
+.drop-selection-label {
+  vertical-align: top;
+  line-height: 30px;
+}

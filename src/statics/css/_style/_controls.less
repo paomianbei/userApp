@@ -1,0 +1,91 @@
+@import (reference)"_variable";
+@import (reference)"_mixin";
+.btn, label{
+  font-weight: normal;
+}
+.input, input:not([type]), input[type="email"], input[type="number"], input[type="password"], input[type="tel"], input[type="url"], input[type="text"] {
+  .m-input;
+}
+textarea, button, select{
+  .m-control-basic();
+}
+//统一placeholder的颜色
+.placeholder(@color: #a9a9a9){
+  ::-webkit-input-placeholder{
+    color: @color;
+  }
+  *::-moz-placeholder{
+    color: @color;
+    opacity: 1;
+  }
+  :-ms-input-placeholder{
+    color: @color;
+  }
+}
+.placeholder();
+input[type=radio], input[type=checkbox]{
+  display: inline-block;
+  margin: -2px 4px 0 0;
+  padding: 0;
+  width: 12px;
+  height: 12px;
+  /* ie11以下的版本radio和checbox得使用content-box，否则显示会有问题 */
+  box-sizing: content-box;
+  border: none;//ie中radio和checkbox有额外的边框
+  .checkbox-inline &, .radio-inline &{
+    position: relative;
+    top: 2px;
+    margin-left: 0;
+  }
+}
+input[type=number]{
+  padding-right: 0;
+}
+
+select{
+  width: @input-width;
+  height: @input-height;
+  &, option{
+    //谷歌和ie的option边距是随着select对齐的，直接给option设置margin、padding无效；在火狐下有效。并且边距比正常控件大一倍
+    padding: 0 0 0 @control-padding-lr / 2;
+  }
+  //去掉ie下拉框箭头的背景色和边框
+  &::-ms-expand {
+    background-color: transparent;
+    border: 0;
+    width: 8px;
+    height: 6px;
+    color: red;
+  }
+}
+.ie-input-clear{
+  &::-ms-clear{
+    display:none;
+  }
+}
+.ie-input-clear();
+.i-checks{
+  top: 1px;
+  label{
+    vertical-align: baseline;
+    cursor: pointer;
+  }
+  i{
+    margin-right: 4px;
+  }
+  input[type=radio], input[type=checkbox]{
+    display: none;
+  }
+  .disabled&, .disabled &, & .disabled{
+    &, *{
+      cursor: not-allowed!important;
+    }
+  }
+}
+.checkbox-inline, .radio-inline{
+  padding-left: 0;
+  //vertical-align: top;
+}
+.form-control:focus{
+  box-shadow: none;
+}

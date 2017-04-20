@@ -1,0 +1,200 @@
+html, body{
+    height: 100%;
+    background-color: #f6f6f6;
+}
+body{
+    padding: 10px;
+}
+@media (min-width: 1200px) {
+    .row {
+        margin-left: -15px;
+        *zoom: 1;
+    }
+}
+.navbar .brand{
+    width: auto;
+}
+
+.main-container{
+    margin-top: 60px;
+    height: 100%;
+}
+.nav-list a .badge:not(:last-child), .nav-list a .label:not(:last-child){
+    right: 30px;
+}
+.main-container-inner, .main-content{
+    height: 100%;
+}
+.main-container .sidebar{
+    position: absolute;
+}
+/* h+ start */
+
+.content-tabs {
+    position: relative;
+    height: 42px;
+    background: #fafafa;
+    line-height: 40px;
+    border-bottom: solid 2px #2f4050;
+    overflow: hidden;
+}
+
+.content-tabs .roll-nav,.page-tabs-list {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    color: #999;
+    z-index: 2;
+    top: 0
+}
+
+.content-tabs .roll-left {
+    left: 0;
+    border-right: solid 1px #eee
+}
+
+.content-tabs .roll-right {
+    right: 0;
+    border-left: solid 1px #eee
+}
+
+.content-tabs button {
+    background: #fff;
+    border: 0;
+    height: 40px;
+    width: 40px;
+    outline: 0
+}
+
+.content-tabs button:hover {
+    background: #fafafa
+}
+
+.page-tabs a {
+    color: #999
+}
+
+.page-tabs a i {
+    color: #ccc
+}
+
+.page-tabs a.active {
+    background: #2f4050;
+    color: #a7b1c2
+}
+
+.page-tabs a.active i:hover,.page-tabs a.active:hover {
+    background: #293846;
+    color: #fff
+}
+nav.page-tabs {
+    margin-left: 40px;
+    width: 100000px;
+    height: 40px;
+    overflow: hidden
+}
+
+nav.page-tabs .page-tabs-content {
+    float: left
+}
+
+.page-tabs a {
+    display: block;
+    float: left;
+    border-right: solid 1px #eee;
+    padding: 0 15px
+}
+
+.page-tabs a i:hover {
+    color: #c00
+}
+
+.content-tabs .roll-nav:hover,.page-tabs a:hover {
+    color: #777;
+    background: #f2f2f2;
+    cursor: pointer
+}
+.roll-right.J_tabRight {
+    right: 140px
+}
+
+.roll-right.btn-group {
+    right: 60px;
+    width: 80px;
+    padding: 0
+}
+
+.roll-right.btn-group button {
+    width: 80px
+}
+
+.roll-right.J_tabExit {
+    background: #fff;
+    height: 40px;
+    width: 60px;
+    outline: 0
+}
+/* h+ end */
+
+/* 和现有的页面融合 start */
+
+.navbar .brand>span{
+    display: inline-block;
+    vertical-align: middle;
+}
+.navbar .split{
+    border-left: 1px solid #ddd;
+}
+.navbar .navbar-nav>li>a{
+    line-height: 40px;
+}
+.navbar .nav li:hover, .navbar .nav>li.active, .navbar .nav>.dropdown.open{
+    background-color: rgba(0,0,0,0.2);
+}
+.nav > li > a:hover, .nav > li > a:focus, .navbar .nav>li.active>a, .navbar .nav>li.active>a:hover, .navbar .nav>li.active>a:focus, .navbar .nav>.dropdown.open>a, .navbar .nav>.dropdown.open>a:hover, .navbar .nav>.dropdown.open>a:focus{
+    background-color: transparent;
+}
+.navbar .notify-row{
+    float: right;
+    padding: 0 5px 0;
+    height: 60px;
+}
+.navbar .notify-row i{
+    font-size: 20px;
+}
+.navbar .notify-row>li{
+    padding: 10px 2px 0;
+    height: 100%;
+}
+.notify-row .badge{
+    top: -3px;
+    left: 22px;
+    right: auto;
+}
+.navbar .notify-row>.dropdown:hover, .navbar .notify-row>.dropdown:active, .navbar .notify-row>.dropdown.open{
+    background-color: transparent;
+}
+.navbar .notify-row>.dropdown:hover>a, .navbar .notify-row>.dropdown:active>a, .navbar .notify-row>.dropdown.open>a{
+    background-color: rgba(0,0,0,0.2);
+}
+.navbar .sys-menu{
+    margin-right: 0;
+}
+.sidebar-toggle-box{
+    color: #fff;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.contentItem{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.sidebar-shortcuts-large>.btn{
+    margin-right: 10px;
+    min-width: inherit;
+    height: 34px;
+    border: none;
+}
+/* 和现有的页面融合 end */
