@@ -6,7 +6,7 @@
 </head>
 <body>
     @@include("src/WEB-INF/page/parts/!header.html")
-    <div class="main">
+    <div id="main-user" class="main">
         <div class="search-group full-width">
             <div>
                 <div class="input-group full-width">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div id="main-user" v-cloak>
+        <div class="user-list scroll-y" v-cloak>
             <div class="form">
                 <!-- 用户身份 -->
                 <fieldset>

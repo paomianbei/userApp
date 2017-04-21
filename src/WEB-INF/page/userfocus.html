@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @@include("src/WEB-INF/page/parts/!ref.html")
+    <title>智能画像</title>
+</head>
+<body>
+    @@include("src/WEB-INF/page/parts/!header.html")
+    <div id="main-user" class="main" v-cloak>
+        <div class="search-group full-width">
+            <div>
+                <div class="input-group full-width">
+                    <i class="input-group-addon fa fa-search"></i>
+                    <input type="text" placeholder="请输入商品编号">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="top-space"></div>
+        <div class="bg-white">
+            <ul class="tab-list">
+                <li class="active"><a href="#info" data-toggle="tab">近期关注</a></li>
+                <li><a href="#detail" data-toggle="tab">历史购买</a></li>
+            </ul>
+        </div>
+        <hr>
+        <div class="tab-content scroll-y">
+            <div class="tab-pane fade in active" id="info">
+                <figure class="product-item" v-for="item in product.list">
+                    <div class="img-wrap">
+                        <img :src="'../../statics/images/demo/'+item.img" alt="">
+                    </div>
+                    <ul>
+                        <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
+                        <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
+                        <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
+                        <li><span class="title">最近一次关注：</span><span v-text="item['最近一次关注']"></span></li>
+                    </ul>
+                </figure>
+            </div>
+            <div class="tab-pane fade" id="detail">
+                <figure class="product-item" v-for="item in product.his">
+                    <div class="img-wrap">
+                        <img :src="'../../statics/images/demo/'+item.img" alt="">
+                    </div>
+                    <ul>
+                        <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
+                        <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
+                        <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
+                        <li><span class="title">最近一次购买：</span><span v-text="item['最近一次购买']"></span></li>
+                    </ul>
+                </figure>
+            </div>
+        </div>
+    </div>
+    @@include("src/WEB-INF/page/parts/!footer.html")
+    <script src="${rc.contextPath}/statics/js/userfocus.js"></script>
+</body>
+</html>

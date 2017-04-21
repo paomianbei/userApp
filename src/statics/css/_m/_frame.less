@@ -3,12 +3,15 @@
 @header-height: 88pt;
 @footer-height: 98pt;
 
+@search-group-height: 86pt;
+
 body{
   font-family: Hiragino;
   font-size: 28pt;
   line-height: 1;
   color: @font-color;
   background-color: #fff;
+  overflow: hidden;
 }
 header, footer{
   position: fixed;
@@ -59,6 +62,9 @@ footer{
   font-size: 20pt;
   color: #929292;
   background-color: #f7f7f7;
+  a{
+    color: #929292;
+  }
   i{
     display: block;
     margin-bottom: 10pt;
@@ -69,14 +75,15 @@ footer{
       vertical-align: bottom;
     }
   }
-  .active{
+  .active a{
     color: #007aff;
   }
 }
 
 .main{
   padding-top: @header-height;
-  margin-bottom: @footer-height;
+  padding-bottom: @footer-height;
+  height: 100%;
 }
 .search-group{
   display: table;
@@ -94,6 +101,7 @@ footer{
     width: 55pt;
     padding-left: 18pt;
     font-size: 18pt;
+    white-space: nowrap;
     text-align: center;
     vertical-align: middle;
     > i{
@@ -108,7 +116,21 @@ hr{
 a:focus, a:hover{
   text-decoration: none;
 }
+
+/*  业务 */
+.user-list{
+  height: calc(~'100%' - (@search-group-height));
+}
+
+
+@top-space-height: 20pt;
+@tab-height: 82pt;
 .top-space{
-  height: 20pt;
+  height: @top-space-height;
   background-color: @default-bg;
 }
+.tab-content{
+  height: calc(~'100%' - (@search-group-height + @top-space-height + @tab-height));
+}
+
+

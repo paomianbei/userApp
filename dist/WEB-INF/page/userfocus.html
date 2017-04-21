@@ -55,74 +55,50 @@
         </ul>
     </div>
 </header>
-    <div id="main-user" class="main">
+    <div id="main-user" class="main" v-cloak>
         <div class="search-group full-width">
             <div>
                 <div class="input-group full-width">
                     <i class="input-group-addon fa fa-search"></i>
-                    <input type="text" placeholder="请输入手机号">
+                    <input type="text" placeholder="请输入商品编号">
                 </div>
             </div>
         </div>
-        <div class="user-list scroll-y" v-cloak>
-            <div class="form">
-                <!-- 用户身份 -->
-                <fieldset>
-                    <legend>用户身份</legend>
-                    <div class="form-group">
-                        <label>省份：</label>
-                        <span class="control-text" v-text="userData.省份">{</span>
+        <hr>
+        <div class="top-space"></div>
+        <div class="bg-white">
+            <ul class="tab-list">
+                <li class="active"><a href="#info" data-toggle="tab">近期关注</a></li>
+                <li><a href="#detail" data-toggle="tab">历史购买</a></li>
+            </ul>
+        </div>
+        <hr>
+        <div class="tab-content scroll-y">
+            <div class="tab-pane fade in active" id="info">
+                <figure class="product-item" v-for="item in product.list">
+                    <div class="img-wrap">
+                        <img :src="'../../statics/images/demo/'+item.img" alt="">
                     </div>
-                    <div class="form-group">
-                        <label>城市：</label>
-                        <label class="control-text" v-text="userData.城市"></label>
+                    <ul>
+                        <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
+                        <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
+                        <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
+                        <li><span class="title">最近一次关注：</span><span v-text="item['最近一次关注']"></span></li>
+                    </ul>
+                </figure>
+            </div>
+            <div class="tab-pane fade" id="detail">
+                <figure class="product-item" v-for="item in product.his">
+                    <div class="img-wrap">
+                        <img :src="'../../statics/images/demo/'+item.img" alt="">
                     </div>
-                    <div class="form-group">
-                        <label>小区：</label>
-                        <label class="control-text" v-text="userData.小区"></label>
-                    </div>
-                </fieldset>
-                <!-- 注册信息 -->
-                <fieldset>
-                    <legend>注册信息</legend>
-                    <div class="form-group">
-                        <label>是否注册：</label>
-                        <label class="control-text" v-text="userData.是否注册"></label>
-                    </div>
-                    <div class="form-group">
-                        <label>注册日期：</label>
-                        <label class="control-text" v-text="userData.注册日期"></label>
-                    </div>
-                    <div class="form-group">
-                        <label>注册距今天：</label>
-                        <label class="control-text" v-text="userData.注册距今天"></label>
-                    </div>
-                </fieldset>
-
-                <!-- 用户评价 -->
-                <fieldset>
-                    <legend>用户评价</legend>
-                    <div class="form-group">
-                        <label>用户评论次数：</label>
-                        <label class="control-text" v-text="userData.用户评论次数"></label>
-                    </div>
-                    <div class="form-group">
-                        <label>用户评分等级：</label>
-                        <label class="control-text" v-text="userData.用户评分等级"></label>
-                    </div>
-                </fieldset>
-                <!-- 会员维护 -->
-                <fieldset>
-                    <legend>会员维护</legend>
-                    <div class="form-group">
-                        <label>会员生命周期：</label>
-                        <label class="control-text" v-text="userData.会员生命周期"></label>
-                    </div>
-                    <div class="form-group">
-                        <label>会员等级：</label>
-                        <label class="control-text" v-text="userData.会员等级"></label>
-                    </div>
-                </fieldset>
+                    <ul>
+                        <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
+                        <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
+                        <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
+                        <li><span class="title">最近一次购买：</span><span v-text="item['最近一次购买']"></span></li>
+                    </ul>
+                </figure>
             </div>
         </div>
     </div>
@@ -148,6 +124,6 @@
         </li>
     </ul>
 </footer>
-    <script src="../../statics/js/user.js"></script>
+    <script src="../../statics/js/userfocus.js"></script>
 </body>
 </html>

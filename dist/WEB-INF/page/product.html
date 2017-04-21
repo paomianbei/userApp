@@ -78,22 +78,20 @@
             </ul>
         </div>
         <hr>
-        <div class="tab-content">
+        <div class="tab-content scroll-y">
             <div class="tab-pane fade in active" id="info">
-                <figure class="product-item">
+                <figure class="product-item v" v-for="item in product.list">
                     <div class="img-wrap">
-                        <img src="../../statics/images/demo/ipone.png" alt="">
+                        <img :src="'../../statics/images/demo/'+item.img" alt="">
                     </div>
-                    <dl>
-                        <dt>商品名称：</dt>
-                        <dd>Apple手机IPhone7</dd>
-                        <dt>编号：</dt>
-                        <dd>123456789</dd>
-                        <dt>门店库存：</dt>
-                        <dd>168台</dd>
-                        <dt>分布库存：</dt>
-                        <dd>1342台</dd>
-                    </dl>
+                    <ul>
+                        <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
+                        <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
+                        <li><span class="title">商品品类：</span><span v-text="item['商品品类']"></span></li>
+                        <li><span class="title">商品品牌：</span><span v-text="item['商品品牌']"></span></li>
+                        <li><span class="title">门店库存：</span><span v-text="item['门店库存']"></span></li>
+                        <li><span class="title">分部库存：</span><span v-text="item['分部库存']"></span></li>
+                    </ul>
                 </figure>
             </div>
             <div class="tab-pane fade" id="detail">
@@ -117,16 +115,22 @@
     <footer>
     <ul class="table-list">
         <li>
-            <i class="icon-search"></i>
-            <span>画像查询</span>
+            <a href="user.html">
+                <i class="icon-search"></i>
+                <span>画像查询</span>
+            </a>
         </li>
         <li>
-            <i class="icon-attention"></i>
-            <span>用户关注</span>
+            <a href="userfocus.html">
+                <i class="icon-attention"></i>
+                <span>用户关注</span>
+            </a>
         </li>
         <li>
-            <i class="icon-recommend"></i>
-            <span>销售推荐</span>
+            <a href="javascript:;">
+                <i class="icon-recommend"></i>
+                <span>销售推荐</span>
+            </a>
         </li>
     </ul>
 </footer>
