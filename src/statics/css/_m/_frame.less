@@ -3,12 +3,12 @@
 @header-height: 88pt;
 @footer-height: 98pt;
 
-html, body{
-  background-color: #fff;
-}
 body{
   font-family: Hiragino;
+  font-size: 28pt;
   line-height: 1;
+  color: @font-color;
+  background-color: #fff;
 }
 header, footer{
   position: fixed;
@@ -42,14 +42,20 @@ header{
   }
   .right-side{
     position: absolute;
-    top: 0;
+    top: (@header-height - 32pt) / 2;
     right: @indent-lr;
+    line-height: 1;
+  }
+  .dropdown-menu{
+    min-width: auto;
+    font-size: 30pt;
   }
 }
 footer{
   bottom: 0;
   padding-bottom: 12pt;
   height: @footer-height;
+  border-top: 1px solid @border-color;
   font-size: 20pt;
   color: #929292;
   background-color: #f7f7f7;
@@ -73,9 +79,36 @@ footer{
   margin-bottom: @footer-height;
 }
 .search-group{
+  display: table;
   padding: 15pt;
+  background-color: #fff;
+  >*{
+    display: table-cell;
+  }
   .input-group{
     height: 56pt;
     background-color: #e9e8e7;
   }
+  .qrcode-group{
+    box-sizing: content-box;
+    width: 55pt;
+    padding-left: 18pt;
+    font-size: 18pt;
+    text-align: center;
+    vertical-align: middle;
+    > i{
+      font-size: 34pt;
+    }
+  }
+}
+hr{
+  margin: 0;
+  border-top-color: @border-color;
+}
+a:focus, a:hover{
+  text-decoration: none;
+}
+.top-space{
+  height: 20pt;
+  background-color: @default-bg;
 }

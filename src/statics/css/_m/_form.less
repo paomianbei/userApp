@@ -19,7 +19,6 @@
 @import (reference)"_var";
 @import (reference)"_mixin";
 /* 变量 */
-@label-color: #232323;
 @text-color: #93959e;
 @legend-color: #6e6e70;
 @border-group: #c8c7cc;
@@ -43,8 +42,7 @@
 form, .form{
   .clearfix();
   font-size: 30pt;
-  border-top: 1px solid #aaa;
-  border-bottom: 1px solid #aaa;
+  border-top: 1px solid @border-color;
   fieldset{
     border-bottom: 1px solid @border-group;
     &:first-child{
@@ -53,9 +51,7 @@ form, .form{
     &:last-child{
       margin-bottom: 0;
       padding-bottom: @indent-bottom;
-      >.form-group:last-child{
-        border-bottom: 1px solid @border-group;
-      }
+      border-bottom: none;
     }
   }
   legend{
@@ -87,7 +83,7 @@ form, .form{
 .form-group{
   position: relative;
   .control-label, >label:first-child{
-    color: @label-color;
+    color: @font-color;
     line-height: 1;
     .m-control-label;
     >label{
