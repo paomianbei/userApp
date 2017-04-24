@@ -36,6 +36,9 @@
                 {"CPU频率": "以官网信息为准"},
                 {"CPU核数": "其他"}
             ]
+        },
+        mounted: function(){
+            // $(".s-scroll-y").slimScroll();
         }
     });
     $(".content-text").text("商品");

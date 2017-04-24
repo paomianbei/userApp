@@ -17,6 +17,9 @@
                 "会员生命周期": "活跃",
                 "会员等级": "G5"
             }
+        },
+        mounted: function(){
+            // $(".s-scroll-y").slimScroll();
         }
     });
     $(".table-list li:eq(0)").addClass("active");

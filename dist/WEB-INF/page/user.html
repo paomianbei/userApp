@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- 禁止ie兼容模式 -->
-<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="telephone=no,email=no" name="format-detection">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="yes" name="apple-touch-fullscreen">
+<meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <script>
     (function(){
@@ -18,10 +19,7 @@
     }());
 </script>
 
-<link rel="stylesheet" href="../../statics/libs/fonts/iconfont/style.css">
 <link rel="stylesheet" href="../../statics/libs/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="../../statics/libs/fonts/font-awesome.min.css">
-<link rel="stylesheet" href="../../statics/libs/jqgrid/css/ui.jqgrid-bootstrap.css">
 <link rel="stylesheet" href="../../statics/css/style.css">
 
 <script src="../../statics/libs/jquery/jquery.min.js"></script>
@@ -29,8 +27,6 @@
 <script src="../../statics/libs/bootstrap/js/bootstrap.min.js"></script>
 
 <script src="../../statics/libs/vue/vue.min.js"></script>
-<script src="../../statics/libs/jqgrid/js/grid.locale-cn.js"></script>
-<script src="../../statics/libs/jqgrid/js/jquery.jqGrid.js"></script>
 <!--<script src="../../statics/js/common.js"></script>-->
 
 <!--<script src="../../statics/js/defaultConfig.js?v=${initParam.staticVersion}"></script>-->
@@ -40,31 +36,31 @@
 <body>
     <header>
     <div class="back">
-        <i class="fa fa-chevron-left"></i>
+        <i class="icon-back"></i>
         <span class="back-text">工作</span>
     </div>
     <div class="header-text">智能画像</div>
     <div class="right-side pull-right">
         <div data-toggle="dropdown">
             <span class="content-text">会员</span>
-            <i class="fa fa-angle-down"></i>
+            <i class="icon-angle-down"></i>
         </div>
-        <ul class="dropdown-menu" role="menu">
+        <ul class="dropdown-menu bg-mask" role="menu">
             <li><a href="user.html">会员</a></li>
             <li><a href="product.html">商品</a></li>
         </ul>
     </div>
 </header>
     <div id="main-user" class="main">
-        <div class="search-group full-width">
+        <div class="search-group fixed full-width">
             <div>
                 <div class="input-group full-width">
-                    <i class="input-group-addon fa fa-search"></i>
+                    <i class="input-group-addon icon-search"></i>
                     <input type="text" placeholder="请输入手机号">
                 </div>
             </div>
         </div>
-        <div class="user-list scroll-y" v-cloak>
+        <div class="user-list s-scroll-y" v-cloak>
             <div class="form">
                 <!-- 用户身份 -->
                 <fieldset>
@@ -130,19 +126,19 @@
     <ul class="table-list">
         <li>
             <a href="user.html">
-                <i class="icon-search"></i>
+                <i class="icon-search-q"></i>
                 <span>画像查询</span>
             </a>
         </li>
         <li>
             <a href="userfocus.html">
-                <i class="icon-attention"></i>
+                <i class="icon-eye"></i>
                 <span>用户关注</span>
             </a>
         </li>
         <li>
             <a href="javascript:;">
-                <i class="icon-recommend"></i>
+                <i class="icon-thumb"></i>
                 <span>销售推荐</span>
             </a>
         </li>

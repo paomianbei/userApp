@@ -10,16 +10,18 @@ textarea, button, select{
   .m-control-basic();
 }
 //统一placeholder的颜色
-.placeholder(@color: #b0b4bb){
+.placeholder(@color: #b0b4bb, @opacity: .34){
   ::-webkit-input-placeholder{
     color: @color;
+    opacity: @opacity;
   }
   *::-moz-placeholder{
     color: @color;
-    opacity: 1;
+    opacity: @opacity;
   }
   :-ms-input-placeholder{
     color: @color;
+    opacity: @opacity;
   }
 }
 .placeholder();

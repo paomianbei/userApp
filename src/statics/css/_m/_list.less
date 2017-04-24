@@ -78,6 +78,9 @@
     li{
       font-weight: normal;
       margin-bottom: 20pt;
+      &:last-child{
+        margin-bottom: 0;
+      }
     }
   }
   &.v{
@@ -100,7 +103,8 @@
   }
 }
 .product-detail{
-  padding: 50pt 50pt 0;
+  @border-color: #e7e7e7;
+  padding: 50pt 20pt 0;
   > table{
     width: 100%;
     border: 2px solid @border-color;
@@ -109,9 +113,30 @@
     color: #93959e;
     background-color: #fff;
     td{
-      width: 50%;
-      padding: 12pt 5pt;
       border: 1px solid @border-color;
     }
   }
+  .table-group{
+    font-size: 24pt;
+    color: #848689;
+    caption{
+      font-weight: bold;
+      color: #626262;
+    }
+    td{
+      padding: 25pt 0 25pt 35pt;
+      line-height: 30pt;
+      text-align: left;
+    }
+    td:first-child{
+      width: 187pt;
+    }
+    td:last-child{
+      font-size: 22pt;
+    }
+    + .table-group{
+      margin-top: 0;
+    }
+  }
+
 }
