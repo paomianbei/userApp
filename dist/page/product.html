@@ -44,7 +44,7 @@
 <link rel="stylesheet" href="../statics/css/style.css">
 
     <header>
-    <div class="back" onclick="console.log(screen.lockOrientation)">
+    <div class="back" onclick="console.log(Object.keys({a:1,b:2}))">
         <i class="icon-back"></i>
         <span class="back-text">工作</span>
     </div>
@@ -65,13 +65,13 @@
                                 <li><a href="product.html">商品</a></li>
                             </ul>
                         </div>
-                        <input type="text" placeholder="请输入商品编号" @input="filter" v-model="searchValue">
+                        <input type="tel" placeholder="请输入商品编号" @input="filter" v-model="searchValue">
                     </div>
                 </div>
                 <div class="qrcode-group">
                     <i class="icon-scan"></i>扫一扫
                 </div>
-                <div class="autocomplete-list form" v-show="expand" v-cloak>
+                <div class="autocomplete-list form" v-show="expand">
                     <div class="form-group" v-for="item in searchList" @click="useItem(item)">
                         <label v-text="item"></label>
                     </div>
@@ -88,7 +88,7 @@
             </div>
             <hr>
         </div>
-        <div class="tab-content s-scroll-y" v-cloak>
+        <div class="tab-content s-scroll-y" v-cloak="">
             <div class="tab-pane fade in active" id="info">
                 <figure class="product-item v" v-for="item in product.list">
                     <div class="img-wrap">
@@ -107,12 +107,14 @@
             <div class="tab-pane fade" id="detail">
                 <div class="product-detail">
                     <table class="table-group">
-                        <tbody>
-                        <tr v-for="item in productInfo">
-                            <template v-for="text, key in item">
-                                <td v-text="key"></td>
-                                <td v-text="text"></td>
-                            </template>
+                        <tbody v-for="item in productInfo">
+                        <tr v-for="v, k in item">
+                            <td v-text="k"></td>
+                            <td v-text="v"></td>
+                            <!--<template>-->
+                            <!--<td v-text="Object.keys(item)[0]"></td>-->
+                            <!--<td v-text="item[Object.keys(item)[0]]"></td>-->
+                            <!--</template>-->
                         </tr>
                         </tbody>
                     </table>
