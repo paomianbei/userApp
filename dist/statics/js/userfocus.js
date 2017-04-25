@@ -2,7 +2,6 @@
  * Created by weikaiwei on 2017/4/21.
  */
 (function(){
-    $(".content-text").text("商品");
     $(".table-list li:eq(1)").addClass("active"); 
 
     /**
@@ -102,17 +101,23 @@ var vueFooter = new Vue({
         data: {
             expand: false,
             searchList: [],
-            searchValue: ""
+            searchValue_: ""
+        },
+        computed: {
+            searchValue: {
+                get: function(){
+                    return this.searchValue_
+                },
+                set: function(v){
+                    this.expand = true;
+                    var fromList = ["13266350113", "13501227269"];
+                    this.searchList = fromList.filter(function(item){
+                        return v && item.indexOf($.trim(v)) == 0 || false;
+                    });
+                }
+            }
         },
         methods: {
-            filter: function(e){
-                this.expand = true;
-                var fromList = ["13266350113", "13501227269"];
-                var v = e.target.value;
-                this.searchList = fromList.filter(function(item){
-                    return v && item.indexOf($.trim(v)) == 0 || false;
-                });
-            },
             useItem: function(item){
                 this.searchValue = item;
                 this.expand = false;
@@ -124,7 +129,7 @@ var vueFooter = new Vue({
     // 用户关注页面跳转到画像查询的会员，把会员手机号码带过去
     if(queryData.userPhoneNumber){
         init();
-        vueSearch.searchValue = queryData.userPhoneNumber;
+        vueSearch.useItem(queryData.userPhoneNumber);
         vueFooter.exportData = queryData;
     }
 }());

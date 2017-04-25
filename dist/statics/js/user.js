@@ -148,7 +148,7 @@ var vueFooter = new Vue({
     // 画像查询的会员页面跳转到用户关注，把会员手机号码带过去
     if(queryData.userPhoneNumber){
         init();
-        vueSearch.searchValue = queryData.userPhoneNumber;
+        vueSearch.useItem(queryData.userPhoneNumber);
         vueFooter.exportData = queryData;
     }
 }());

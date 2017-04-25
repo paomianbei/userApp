@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>智能画像</title>
+</head>
+<body>
+@@include("src/page/parts/!ref.html")
+@@include("src/page/parts/!header.html")
+<div class="main">
+    <div class="unwork">此功能尚未开放</div>
+</div>
+@@include("src/page/parts/!footer.html")
+<script>
+    (function(){
+        $(".table-list li:eq(2)").addClass("active");
+        var vueFooter = new Vue({
+            el: "footer",
+            data: {
+                queryString: ""
+            }
+        });
+    }());
+</script>
+</body>
+</html>

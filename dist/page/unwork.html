@@ -4,7 +4,7 @@
     <title>智能画像</title>
 </head>
 <body>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="telephone=no,email=no" name="format-detection">
 <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
@@ -43,68 +43,17 @@
 <link rel="stylesheet" href="../statics/libs/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../statics/css/style.css">
 
-    <header>
+<header>
     <div class="back" onclick="console.log(Object.keys({a:1,b:2}))">
         <i class="icon-back"></i>
         <span class="back-text">工作</span>
     </div>
     <div class="header-text">智能画像</div>
 </header>
-    <div class="main">
-        <div class="fixed full-width">
-            <div class="search-group full-width relative">
-                <div>
-                    <div class="input-group full-width">
-                        <i class="input-group-addon icon-search"></i>
-                        <input type="tel" placeholder="请输会员入手机号" v-model="searchValue">
-                    </div>
-                </div>
-                <div class="autocomplete-list form" v-show="expand" v-cloak>
-                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
-                        <label v-text="item"></label>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="top-space"></div>
-            <div class="bg-white">
-                <ul class="tab-list">
-                    <li class="active"><a href="#info" data-toggle="tab">近期关注</a></li>
-                    <li><a href="#detail" data-toggle="tab">历史购买</a></li>
-                </ul>
-            </div>
-            <hr>
-        </div>
-        <div class="tab-content s-scroll-y" v-cloak>
-            <div class="tab-pane fade in active" id="info">
-                <figure class="product-item" v-for="item in product.list">
-                    <div class="img-wrap">
-                        <img :src="'../statics/images/demo/'+item.img" alt="">
-                    </div>
-                    <ul>
-                        <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
-                        <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
-                        <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
-                        <li><span class="title">最近一次关注：</span><span v-text="item['最近一次关注']"></span></li>
-                    </ul>
-                </figure>
-            </div>
-            <div class="tab-pane fade" id="detail">
-                <figure class="product-item" v-for="item in product.his">
-                    <div class="img-wrap">
-                        <img :src="'../statics/images/demo/'+item.img" alt="">
-                    </div>
-                    <ul>
-                        <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
-                        <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
-                        <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
-                        <li><span class="title">最近一次购买：</span><span v-text="item['最近一次购买']"></span></li>
-                    </ul>
-                </figure>
-            </div>
-        </div>
-    </div>
-    <footer>
+<div class="main">
+    <div class="unwork">此功能尚未开放</div>
+</div>
+<footer>
     <ul class="table-list">
         <li>
             <a :href="'user.html?' + queryString">
@@ -130,6 +79,16 @@
 <script src="../statics/libs/jquery/jquery.min.js"></script>
 <script src="../statics/libs/bootstrap/js/bootstrap.min.js"></script>
 <script src="../statics/libs/vue/vue.min.js"></script>
-    <script src="../statics/js/userfocus.js"></script>
+<script>
+    (function(){
+        $(".table-list li:eq(2)").addClass("active");
+        var vueFooter = new Vue({
+            el: "footer",
+            data: {
+                queryString: ""
+            }
+        });
+    }());
+</script>
 </body>
 </html>
