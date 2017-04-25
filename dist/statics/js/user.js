@@ -47,25 +47,13 @@ var vueFooter = new Vue({
 });
     var vm, vueSearch;
     function init(){
-        vm = new Vue({
+        vm = vm || new Vue({
             el: ".user-list",
             data: {
-                userData: {
-                    "省份": "b",
-                    "城市": "d",
-                    "小区": "f",
-                    "是否注册": "是",
-                    "注册日期": "2015/7/1",
-                    "注册距今天": "12天",
-                    "用户评论次数": 12,
-                    "用户评分等级": "level-1",
-                    "会员生命周期": "活跃",
-                    "会员等级": "G5"
-                }
-            },
-            mounted: function(){
+                userData: {}
             }
         });
+        return vm;
     }
     //输入检索
     vueSearch = new Vue({
@@ -73,22 +61,87 @@ var vueFooter = new Vue({
         data: {
             expand: false,
             searchList: [], 
-            searchValue: ""
+            searchValue: "",
+            userData: {
+                "13266350113": [
+                    {
+                        title: "身份信息",
+                        detail: {
+                            "省份": "广东",
+                            "城市": "广州",
+                            "小区": "",
+                            "是否有邮箱": "是",
+                            "是否内部员工": "否",
+                            "操作系统": "IOS"
+                        }
+                    },
+                    {
+                        title: "注册信息",
+                        detail: {
+                            "是否注册": "是",
+                            "城市": "2015/7/1",
+                            "注册距今天": "12天"
+                        }
+                    },
+                    {
+                        title: "注册信息",
+                        detail: {
+                            "是否注册": "是",
+                            "城市": "2015/7/1",
+                            "注册距今天": "12天"
+                        }
+                    }
+                ],
+                "13501227269": [
+                    {
+                        title: "身份信息",
+                        detail: {
+                            "省份": "北京",
+                            "城市": "北京",
+                            "小区": "西坝河西里小区",
+                            "是否有邮箱": "是",
+                            "是否内部员工": "否",
+                            "操作系统": "Android"
+                        }
+                    },
+                    {
+                        title: "注册信息",
+                        detail: {
+                            "是否注册": "是",
+                            "城市": "2017/4/24",
+                            "注册距今天": "1天"
+                        }
+                    },
+                    {
+                        title: "偏好标签",
+                        detail: {
+                            "时段偏好": "15:30  0.5",
+                            "站点偏好": "APP"
+                        }
+                    }
+                ]
+            }
         },
         methods: {
             filter: function(e){
                 this.expand = true;
-                var fromList = ["13266350113", "13501227269", "13501271392", "13501392088", "13520533099", "13520957722", "13521927171", "13521967388", "13521975975", "13755607956", "13982193031"];
-                var v = e.target.value;                
-                this.searchList = fromList.filter(function(item){
-                    return v && item.indexOf($.trim(v)) == 0 || false;
-                }); 
+                var v = e.target.value;
+                var fromList = this.userData, arr = [];
+                if(v){
+                    for(var k in fromList){
+                        if(k.indexOf($.trim(v)) == 0){
+                            arr.push(k);
+                        }
+                    }
+                }
+                this.searchList = arr;
             },
             useItem: function(item){
                 this.searchValue = item;
                 this.expand = false;
-                init();
-                vueFooter.exportData = {userPhoneNumber: item}
+                vueFooter.exportData = {userPhoneNumber: item};
+                var vm = init();
+                vm.userData = this.userData[item];
             }
         }
     });

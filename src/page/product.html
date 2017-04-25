@@ -46,31 +46,27 @@
         </div>
         <div class="tab-content s-scroll-y" v-cloak="">
             <div class="tab-pane fade in active" id="info">
-                <figure class="product-item v" v-for="item in product.list">
+                <figure class="product-item v">
                     <div class="img-wrap">
-                        <img :src="'../statics/images/demo/'+item.img" alt="">
+                        <img :src="'../statics/images/demo/'+product.list.img" alt="">
                     </div>
                     <ul>
-                        <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
-                        <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
-                        <li><span class="title">商品品类：</span><span v-text="item['商品品类']"></span></li>
-                        <li><span class="title">商品品牌：</span><span v-text="item['商品品牌']"></span></li>
-                        <li><span class="title">门店库存：</span><span v-text="item['门店库存']"></span></li>
-                        <li><span class="title">分部库存：</span><span v-text="item['分部库存']"></span></li>
+                        <li v-for="v, k in product.list" v-if="k!='img'">
+                            <span class="title" v-text="k"></span><span v-text="v"></span>
+                        </li>
                     </ul>
                 </figure>
             </div>
             <div class="tab-pane fade" id="detail">
                 <div class="product-detail">
                     <table class="table-group">
-                        <tbody v-for="item in productInfo">
-                        <tr v-for="v, k in item">
+                        <tbody v-for="item in product.detail">
+                        <tr>
+                            <td class="legend" colspan="2" v-text="item.title"></td>
+                        </tr>
+                        <tr v-for="v, k in item.detail">
                             <td v-text="k"></td>
                             <td v-text="v"></td>
-                            <!--<template>-->
-                            <!--<td v-text="Object.keys(item)[0]"></td>-->
-                            <!--<td v-text="item[Object.keys(item)[0]]"></td>-->
-                            <!--</template>-->
                         </tr>
                         </tbody>
                     </table>

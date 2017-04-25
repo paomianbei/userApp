@@ -107,7 +107,7 @@ var vueFooter = new Vue({
         methods: {
             filter: function(e){
                 this.expand = true;
-                var fromList = ["13266350113", "13501227269", "13501271392", "13501392088", "13520533099", "13520957722", "13521927171", "13521967388", "13521975975", "13755607956", "13982193031"];
+                var fromList = ["13266350113", "13501227269"];
                 var v = e.target.value;
                 this.searchList = fromList.filter(function(item){
                     return v && item.indexOf($.trim(v)) == 0 || false;

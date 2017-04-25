@@ -1,7 +1,7 @@
 /**
  * Created by weikaiwei on 2017/4/20.
  */
-(function(){
+(function () {
     $(".table-list li:eq(0)").addClass("active");
 
     var vueFooter = new Vue({
@@ -11,66 +11,112 @@
         }
     });
     var vm, vueSearch;
+
     function init() {
-        vm = new Vue({
+        vm = vm || new Vue({
             el: ".tab-content",
             data: {
                 product: {
-                    list: [
-                        {
-                            img: "iphone.png",
-                            "商品名称": "Apple手机IPhone7",
-                            "商品编号": "1234557667574",
-                            "商品品类": "手机",
-                            "商品品牌": "苹果（apple）",
-                            "门店库存": "168台",
-                            "分部库存": "1342台",
-                            "最近一次关注": "1天内"
-                        }
-                    ]
-                },
-                productInfo: [
-                    {"商品编号": "3562123"},
-                    {"品牌": "苹果（apple）"},
-                    {"型号": "iphone7"},
-                    {"上市年份": "2016"},
-                    {"机身长度（mm）": "138.3"},
-                    {"机身宽度（mm）": "67.1"},
-                    {"机身厚度（mm）": "7.1"},
-                    {"机身重量（g）": "138"},
-                    {"机身材质分类": "其他"},
-                    {"操作系统": "ios"},
-                    {"输入方式": "触控"},
-                    {"CPU品牌": "以官网信息为准"},
-                    {"CPU型号": "以官网信息为准"},
-                    {"CPU频率": "以官网信息为准"},
-                    {"CPU核数": "其他"}
-                ] 
-            },
-            mounted: function () {
+                    list: {},
+                    detail: {}
+                }
             }
         });
+        return vm;
     }
+
     vueSearch = new Vue({
         el: ".search-group",
         data: {
             expand: false,
             searchList: [],
-            searchValue: ""
+            searchValue: "",
+            fromData: {
+                list: {
+                    "3888280": {
+                        img: "item1.jpg",
+                        "商品编号": "3888280",
+                        "商品名称": "华为 HUAWEI Mate 9 4GB+32GB 全网通版 苍穹灰",
+                        "库存": "1321",
+                        "价格": "3399",
+                        "品类": "手机",
+                        "品牌": "华为"
+                    },
+                    "3749093": {
+                        img: "item2.jpg",
+                        "商品编号": "3749093",
+                        "商品名称": "华为 Mate 9 Pro 6GB+128GB版 琥珀金 移动联通电信4G手机 双卡双待",
+                        "库存": "9999",
+                        "价格": "5299",
+                        "品类": "手机",
+                        "品牌": "华为"
+                    }
+                },
+                detail: {
+                    "3888280": [
+                        {
+                            title: "主体",
+                            detail:{
+                                "品牌": "华为（HUAWEI）",
+                                "型号": "MHA-AL00",
+                                "颜色": "苍穹灰",
+                                "上市时间": "2016年11月",
+                                "上市月份": "11月"
+                            }
+                        },
+                        {
+                            title: "基本信息",
+                            detail:{
+                                "机身尺寸": "156.9 x 78.9 x 7.9",
+                                "机身重量": "190g",
+                                "输入方式": "触控",
+                                "运营商标志或内容": "无"
+                            }
+                        }
+                    ],
+                    "3749093": [
+                        {
+                            title: "主体",
+                            detail:{
+                                "品牌": "华为（HUAWEI）",
+                                "型号": "LON-AL00",
+                                "颜色": "琥珀金"
+                            }
+                        },
+                        {
+                            title: "基本信息",
+                            detail:{
+                                "机身尺寸": "152.0mm×75.0mm×7.5mm（备注：受产品配置和制造工艺影响，实际机身尺寸或有差异，请以实物为准）",
+                                "机身重量": "169g（含电池）（备注：受产品配置和制造工艺影响，实际机身重量或有差异，请以实物为准）",
+                                "输入方式": "触控"
+                            }
+                        }
+                    ]
+                }
+            }
         },
         methods: {
-            filter: function(e){
+            filter: function (e) {
                 this.expand = true;
-                var fromList = ["13266350113", "13501227269", "13501271392", "13501392088", "13520533099", "13520957722", "13521927171", "13521967388", "13521975975", "13755607956", "13982193031"];
+                var fromDetail = this.fromData.detail;
                 var v = e.target.value;
-                this.searchList = fromList.filter(function(item){
-                    return v && item.indexOf($.trim(v)) == 0 || false;
-                });
+                var arr = [];
+                if(v){
+                    for(var k in fromDetail){
+                        if(k.indexOf($.trim(v)) == 0){
+                            arr.push(k);
+                        }
+                    }
+                }
+                this.searchList = arr;
             },
-            useItem: function(item){
+            useItem: function (item) {
                 this.searchValue = item;
                 this.expand = false;
-                init();
+                var fromList = this.fromData.list, fromDetail = this.fromData.detail;
+                var vm = init();
+                vm.product.list = fromList[item];
+                vm.product.detail = fromDetail[item];
             }
         }
     });
