@@ -3,10 +3,10 @@
 @header-height: 88pt;
 @footer-height: 98pt;
 
-@search-group-height: 96pt;
+@search-group-height: 86pt;
 
 body{
-  font-family: Hiragino;
+  font-family: "黑体";
   font-size: 28pt;
   line-height: 1;
   color: @font-color;
@@ -78,18 +78,24 @@ footer{
 .search-group{
   display: table;
   padding: 15pt;
+  height: @search-group-height;
   background-color: #fff;
+  border-top: 1px solid @border-color;
+  border-bottom: 1px solid @border-color;
   >*{
     display: table-cell;
-    vertical-align: bottom;
+    vertical-align: middle;
   }
   .input-group{
     height: 56pt;
     background-color: #e9e8e7;
-    vertical-align: bottom;
+    vertical-align: middle;
     >input{
       height: 100%; // uc
-      vertical-align: bottom;
+      vertical-align: middle;
+    }
+    .input-group-addon{
+      padding-left: 20pt;
     }
   }
   .qrcode-group{
@@ -123,8 +129,10 @@ a:focus, a:hover{
     color: #666;
   }
   .tri-down{
-    .tri(12pt, 6pt, top, #666);
+    .tri(14pt, 8pt, top, #666);
     display: inline-block;
+    margin-left: -5pt;
+    margin-right: 10pt;
     vertical-align: middle;
   }
 }
@@ -135,11 +143,12 @@ a:focus, a:hover{
   width: 278pt;
   font-size: 32pt;
   line-height: 1;
+  border: none;
   &.tri:before{
     content: "";
     position: absolute;
-    top: -20pt;
-    left: 25pt;
+    top: -19pt;
+    left: 45pt;
     .tri(30pt, 20pt, bottom, @bg);
   }
   >li{
@@ -156,6 +165,16 @@ a:focus, a:hover{
   &.black{
     background-color: @bg;
   }
+}
+.autocomplete-list{
+  position: absolute;
+  z-index: 999;
+  top: 100%;
+  left: 0;
+  display: block;
+  width: 100%;
+  min-height: calc(~'100%' - (@header-height + @search-group-height));
+  background-color: #fff;
 }
 .user-list{
   //height: calc(~'100%' - (@search-group-height));

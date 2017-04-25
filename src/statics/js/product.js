@@ -38,7 +38,6 @@
             ]
         },
         mounted: function(){
-            // $(".s-scroll-y").slimScroll();
         }
     });
     $(".content-text").text("商品");

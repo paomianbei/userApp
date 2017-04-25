@@ -7,7 +7,7 @@ module.exports = function(){
         $.connect.server({
             host: "l", // 默认localhost
             port: "80", // 默认8000
-            root: ["dist/WEB-INF/page", "dist"], // 指定项目主目录，多个使用数组
+            root: ["dist/page", "dist"], // 指定项目主目录，多个使用数组
             livereload: true //自动刷新
         });
         copyStatic("src", "dist");
@@ -75,7 +75,7 @@ function copyStatic(copyFrom, distTo){
                             prefix: '@@',
                             basepath: '@root'//@root，被包含的文件的路径相对于gulp服务启动的路径；@file  被@@include包含的文件路径是相对于当前使用文件的路径
                         }))
-                        .pipe($.replace(/\$\{rc.contextPath\}/ig, "../.."))
+                        .pipe($.replace(/\$\{rc.contextPath\}/ig, ".."))
                         .pipe(gulp.dest(distPath));
                     break;
                 case ".png":case ".gif":case ".jpg":case ".bmp":

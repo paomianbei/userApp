@@ -43,6 +43,7 @@ form, .form{
   .clearfix();
   font-size: 30pt;
   border-top: 1px solid @border-color;
+  border-bottom: 1px solid @border-group;
   fieldset{
     border-bottom: 1px solid @border-group;
     &:first-child{
@@ -52,7 +53,7 @@ form, .form{
       margin-bottom: 0;
       padding-bottom: @indent-bottom;
       border-bottom: none;
-      &:last-child{
+      .form-group:last-child{
         border-bottom: 1px solid @border-color;
       }
     }

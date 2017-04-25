@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>智能画像</title>
+</head>
+<body>
+    <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="telephone=no,email=no" name="format-detection">
+<meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<script>
+    (function(){
+        /**基准 * 页面宽度 / 设计稿宽度
+         * 设计稿： 750 * 1334
+         * 以100px作为rem的基准，谷歌不支持12px以下（其它浏览器没有这个限制）
+         * 例： a * b，用作高宽的时候，a和b任意一方小于12px，都会使用12px来计算；
+         * 如果用作font-size，a和b没有要求，但是运算的结果如果小于12px，则计算结果是12px
+         *
+         * window.orientation： 0或180表述竖屏，-90或90表示横屏
+         *
+         * 兼容：使用华为浏览器，第一次打开标签加载网页时，window.innerWidth和window.innerHeight不准确，即使延时处理也不能确定具体的时间
+         * document.body.clientWidth是准确的
+         * */
+        function getOrientation(){
+
+        //screen.orientation : “portrait-primary”默认, “portrait-secondary”默认的基础上旋转90度,
+            //“landscape-primary”和 “landscape-secondary”
+//            锁住屏幕方向
+//            window.screen.lockOrientation = screen.lockOrientation ||screen.mozLockOrientation || screen.msLockOrientation;
+//            window.screen.unlockOrientation = screen.unlockOrientation|| screen.mozUnLockOrientation || screen.msUnLockOrientation;
+
+            var orientation = window.screen.orientation;
+
+            return 0;
+        }
+        var baseWidth = 750, baseHeight = 1334,
+            base = window.innerWidth < window.innerHeight ? baseWidth : baseHeight,
+            terminal = document.body && document.body.clientWidth || window.innerWidth;
+        (document.documentElement || document.body).style.fontSize = 100 * terminal / base + "px";
+    }());
+</script>
+<link rel="stylesheet" href="../statics/libs/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../statics/css/style.css">
+
+    <header>
+    <div class="back" onclick="console.log(screen.lockOrientation)">
+        <i class="icon-back"></i>
+        <span class="back-text">工作</span>
+    </div>
+    <div class="header-text">智能画像</div>
+</header>
+    <div class="main">
+        <div class="search-group fixed full-width">
+            <div>
+                <div class="input-group full-width">
+                    <div class="input-group-addon group-dropdown">
+                        <a href="javascript:;" data-toggle="dropdown">
+                            <span class="content-text">会员</span>
+                            <i class="tri-down"></i>
+                        </a>
+                        <ul class="dropdown-menu tri black" role="menu">
+                            <li><a href="user.html">会员</a></li>
+                            <li><a href="product.html">商品</a></li>
+                        </ul>
+                    </div>
+                    <input type="text" placeholder="请输会员入手机号" @input="filter" v-model="searchValue">
+                </div>
+            </div>
+            <div class="autocomplete-list form" v-show="expand" v-cloak>
+                <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                    <label v-text="item"></label>
+                </div>
+            </div>
+        </div>
+        <div class="user-list s-scroll-y" v-cloak>
+            <div class="form">
+                <!-- 用户身份 -->
+                <fieldset>
+                    <legend>用户身份</legend>
+                    <div class="form-group">
+                        <label>省份：</label>
+                        <span class="control-text" v-text="userData.省份">{</span>
+                    </div>
+                    <div class="form-group">
+                        <label>城市：</label>
+                        <label class="control-text" v-text="userData.城市"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>小区：</label>
+                        <label class="control-text" v-text="userData.小区"></label>
+                    </div>
+                </fieldset>
+                <!-- 注册信息 -->
+                <fieldset>
+                    <legend>注册信息</legend>
+                    <div class="form-group">
+                        <label>是否注册：</label>
+                        <label class="control-text" v-text="userData.是否注册"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>注册日期：</label>
+                        <label class="control-text" v-text="userData.注册日期"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>注册距今天：</label>
+                        <label class="control-text" v-text="userData.注册距今天"></label>
+                    </div>
+                </fieldset>
+
+                <!-- 用户评价 -->
+                <fieldset>
+                    <legend>用户评价</legend>
+                    <div class="form-group">
+                        <label>用户评论次数：</label>
+                        <label class="control-text" v-text="userData.用户评论次数"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>用户评分等级：</label>
+                        <label class="control-text" v-text="userData.用户评分等级"></label>
+                    </div>
+                </fieldset>
+                <!-- 会员维护 -->
+                <fieldset>
+                    <legend>会员维护</legend>
+                    <div class="form-group">
+                        <label>会员生命周期：</label>
+                        <label class="control-text" v-text="userData.会员生命周期"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>会员等级：</label>
+                        <label class="control-text" v-text="userData.会员等级"></label>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <footer>
+    <ul class="table-list">
+        <li>
+            <a href="user.html">
+                <i class="icon-search-q"></i>
+                <span>画像查询</span>
+            </a>
+        </li>
+        <li>
+            <a href="userfocus.html">
+                <i class="icon-eye"></i>
+                <span>用户关注</span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;">
+                <i class="icon-thumb"></i>
+                <span>销售推荐</span>
+            </a>
+        </li>
+    </ul>
+</footer>
+
+<script src="../statics/libs/jquery/jquery.min.js"></script>
+<script src="../statics/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="../statics/libs/vue/vue.min.js"></script>
+<template id="tpl-autocomplete-list">
+
+</template>
+<script>
+    (function(){
+//        Vue.component
+//        $(document).on("input", "[v-autocomplete]", function(e){
+//            var $target = $(e.target), $templete = $($("#tpl-autocomplete-list").html());
+//            var $list = $target.next(".autocomplete-list");
+//            $list.length || ($list = $templete);
+//
+//
+//        })
+    }());
+</script>
+
+    <script src="../statics/js/user.js"></script>
+</body>
+</html>
