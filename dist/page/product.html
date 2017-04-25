@@ -12,39 +12,52 @@
 <script>
     (function(){
         /**基准 * 页面宽度 / 设计稿宽度
+         * 设计稿： 750 * 1334
          * 以100px作为rem的基准，谷歌不支持12px以下（其它浏览器没有这个限制）
          * 例： a * b，用作高宽的时候，a和b任意一方小于12px，都会使用12px来计算；
          * 如果用作font-size，a和b没有要求，但是运算的结果如果小于12px，则计算结果是12px
          *
+         * window.orientation： 0或180表述竖屏，-90或90表示横屏
          *
          * 兼容：使用华为浏览器，第一次打开标签加载网页时，window.innerWidth和window.innerHeight不准确，即使延时处理也不能确定具体的时间
          * document.body.clientWidth是准确的
          * */
-//        var a = (document.documentElement || document.body);
-        setTimeout(function(){
-            var root = (document.documentElement || document.body), base = document.body && document.body.clientWidth || window.innerWidth;
-            root.style.fontSize = 100 * base / 750 + "px";
-        }, 200);
+        function getOrientation(){
+
+        //screen.orientation : “portrait-primary”默认, “portrait-secondary”默认的基础上旋转90度,
+            //“landscape-primary”和 “landscape-secondary”
+//            锁住屏幕方向
+//            window.screen.lockOrientation = screen.lockOrientation ||screen.mozLockOrientation || screen.msLockOrientation;
+//            window.screen.unlockOrientation = screen.unlockOrientation|| screen.mozUnLockOrientation || screen.msUnLockOrientation;
+
+            var orientation = window.screen.orientation;
+
+            return 0;
+        }
+        var baseWidth = 750, baseHeight = 1334,
+            base = window.innerWidth < window.innerHeight ? baseWidth : baseHeight,
+            terminal = document.body && document.body.clientWidth || window.innerWidth;
+        (document.documentElement || document.body).style.fontSize = 100 * terminal / base + "px";
     }());
 </script>
 <link rel="stylesheet" href="../statics/libs/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../statics/css/style.css">
 
     <header>
-    <div class="back">
+    <div class="back" onclick="console.log(screen.lockOrientation)">
         <i class="icon-back"></i>
         <span class="back-text">工作</span>
     </div>
     <div class="header-text">智能画像</div>
 </header>
-    <div id="main-user" class="main" v-cloak>
+    <div class="main">
         <div class="fixed full-width">
-            <div class="search-group full-width">
+            <div class="search-group full-width relative">
                 <div>
                     <div class="input-group full-width">
                         <div class="input-group-addon group-dropdown">
                             <a href="javascript:;" data-toggle="dropdown">
-                                <span class="content-text">会员</span>
+                                <span class="content-text">商品</span>
                                 <i class="tri-down"></i>
                             </a>
                             <ul class="dropdown-menu tri black" role="menu">
@@ -52,11 +65,16 @@
                                 <li><a href="product.html">商品</a></li>
                             </ul>
                         </div>
-                        <input type="text" placeholder="请输入商品编号">
+                        <input type="text" placeholder="请输入商品编号" @input="filter" v-model="searchValue">
                     </div>
                 </div>
                 <div class="qrcode-group">
                     <i class="icon-scan"></i>扫一扫
+                </div>
+                <div class="autocomplete-list form" v-show="expand" v-cloak>
+                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                        <label v-text="item"></label>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -70,7 +88,7 @@
             </div>
             <hr>
         </div>
-        <div class="tab-content s-scroll-y">
+        <div class="tab-content s-scroll-y" v-cloak>
             <div class="tab-pane fade in active" id="info">
                 <figure class="product-item v" v-for="item in product.list">
                     <div class="img-wrap">
@@ -107,13 +125,13 @@
     <footer>
     <ul class="table-list">
         <li>
-            <a href="user.html">
+            <a :href="'user.html?' + queryString">
                 <i class="icon-search-q"></i>
                 <span>画像查询</span>
             </a>
         </li>
         <li>
-            <a href="userfocus.html">
+            <a :href="'userfocus.html?' + queryString">
                 <i class="icon-eye"></i>
                 <span>用户关注</span>
             </a>
@@ -130,22 +148,6 @@
 <script src="../statics/libs/jquery/jquery.min.js"></script>
 <script src="../statics/libs/bootstrap/js/bootstrap.min.js"></script>
 <script src="../statics/libs/vue/vue.min.js"></script>
-<template id="tpl-autocomplete-list">
-
-</template>
-<script>
-    (function(){
-//        Vue.component
-//        $(document).on("input", "[v-autocomplete]", function(e){
-//            var $target = $(e.target), $templete = $($("#tpl-autocomplete-list").html());
-//            var $list = $target.next(".autocomplete-list");
-//            $list.length || ($list = $templete);
-//
-//
-//        })
-    }());
-</script>
-
     <script src="../statics/js/product.js"></script>
 </body>
 </html>

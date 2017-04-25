@@ -4,6 +4,7 @@
 (function(){
     $(".table-list li:eq(0)").addClass("active");
 
+    @@include("src/page/parts/!bindValue.js")
     var vm, vueSearch;
     function init(){
         vm = new Vue({
@@ -26,12 +27,12 @@
             }
         });
     }
+    //输入检索
     vueSearch = new Vue({
         el: ".search-group",
         data: {
             expand: false,
-            searchList: [],
-            userPhoneNumber: "",
+            searchList: [], 
             searchValue: ""
         },
         methods: {
@@ -44,10 +45,17 @@
                 }); 
             },
             useItem: function(item){
-                this.searchValue = this.userPhoneNumber = item;
+                this.searchValue = item;
                 this.expand = false;
                 init();
+                vueFooter.exportData = {userPhoneNumber: item}
             }
         }
     });
+    // 画像查询的会员页面跳转到用户关注，把会员手机号码带过去
+    if(queryData.userPhoneNumber){
+        init();
+        vueSearch.searchValue = queryData.userPhoneNumber;
+        vueFooter.exportData = queryData;
+    }
 }());

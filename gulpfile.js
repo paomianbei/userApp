@@ -69,7 +69,7 @@ function copyStatic(copyFrom, distTo){
                         loginfo = "";
                     }
                     break;
-                case ".jsp":case ".html":
+                case ".jsp":case ".html":case ".js":
                     pipe = gulp.src(e.path)
                         .pipe($.fileInclude({
                             prefix: '@@',

@@ -6,13 +6,18 @@
 <body>
     @@include("src/page/parts/!ref.html")
     @@include("src/page/parts/!header.html")
-    <div id="main-user" class="main">
+    <div class="main">
         <div class="fixed full-width">
-            <div class="search-group full-width">
+            <div class="search-group full-width relative">
                 <div>
                     <div class="input-group full-width">
                         <i class="input-group-addon icon-search"></i>
-                        <input type="text" placeholder="请输会员入手机号">
+                        <input type="text" placeholder="请输会员入手机号" @input="filter" v-model="searchValue">
+                    </div>
+                </div>
+                <div class="autocomplete-list form" v-show="expand" v-cloak>
+                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                        <label v-text="item"></label>
                     </div>
                 </div>
             </div>
@@ -26,7 +31,7 @@
             </div>
             <hr>
         </div>
-        <div class="tab-content s-scroll-y">
+        <div class="tab-content s-scroll-y" v-cloak>
             <div class="tab-pane fade in active" id="info">
                 <figure class="product-item" v-for="item in product.list">
                     <div class="img-wrap">

@@ -51,7 +51,7 @@
     <div class="header-text">智能画像</div>
 </header>
     <div class="main">
-        <div class="search-group fixed full-width">
+        <div class="search-group fixed full-width relative">
             <div>
                 <div class="input-group full-width">
                     <div class="input-group-addon group-dropdown">
@@ -138,13 +138,13 @@
     <footer>
     <ul class="table-list">
         <li>
-            <a href="user.html">
+            <a :href="'user.html?' + queryString">
                 <i class="icon-search-q"></i>
                 <span>画像查询</span>
             </a>
         </li>
         <li>
-            <a href="userfocus.html">
+            <a :href="'userfocus.html?' + queryString">
                 <i class="icon-eye"></i>
                 <span>用户关注</span>
             </a>
@@ -161,22 +161,6 @@
 <script src="../statics/libs/jquery/jquery.min.js"></script>
 <script src="../statics/libs/bootstrap/js/bootstrap.min.js"></script>
 <script src="../statics/libs/vue/vue.min.js"></script>
-<template id="tpl-autocomplete-list">
-
-</template>
-<script>
-    (function(){
-//        Vue.component
-//        $(document).on("input", "[v-autocomplete]", function(e){
-//            var $target = $(e.target), $templete = $($("#tpl-autocomplete-list").html());
-//            var $list = $target.next(".autocomplete-list");
-//            $list.length || ($list = $templete);
-//
-//
-//        })
-    }());
-</script>
-
     <script src="../statics/js/user.js"></script>
 </body>
 </html>

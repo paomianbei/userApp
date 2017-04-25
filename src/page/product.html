@@ -6,14 +6,14 @@
 <body>
     @@include("src/page/parts/!ref.html")
     @@include("src/page/parts/!header.html")
-    <div id="main-user" class="main" v-cloak>
+    <div class="main">
         <div class="fixed full-width">
-            <div class="search-group full-width">
+            <div class="search-group full-width relative">
                 <div>
                     <div class="input-group full-width">
                         <div class="input-group-addon group-dropdown">
                             <a href="javascript:;" data-toggle="dropdown">
-                                <span class="content-text">会员</span>
+                                <span class="content-text">商品</span>
                                 <i class="tri-down"></i>
                             </a>
                             <ul class="dropdown-menu tri black" role="menu">
@@ -21,11 +21,16 @@
                                 <li><a href="product.html">商品</a></li>
                             </ul>
                         </div>
-                        <input type="text" placeholder="请输入商品编号">
+                        <input type="text" placeholder="请输入商品编号" @input="filter" v-model="searchValue">
                     </div>
                 </div>
                 <div class="qrcode-group">
                     <i class="icon-scan"></i>扫一扫
+                </div>
+                <div class="autocomplete-list form" v-show="expand" v-cloak>
+                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                        <label v-text="item"></label>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -39,7 +44,7 @@
             </div>
             <hr>
         </div>
-        <div class="tab-content s-scroll-y">
+        <div class="tab-content s-scroll-y" v-cloak>
             <div class="tab-pane fade in active" id="info">
                 <figure class="product-item v" v-for="item in product.list">
                     <div class="img-wrap">

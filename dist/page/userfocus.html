@@ -50,13 +50,18 @@
     </div>
     <div class="header-text">智能画像</div>
 </header>
-    <div id="main-user" class="main">
+    <div class="main">
         <div class="fixed full-width">
-            <div class="search-group full-width">
+            <div class="search-group full-width relative">
                 <div>
                     <div class="input-group full-width">
                         <i class="input-group-addon icon-search"></i>
-                        <input type="text" placeholder="请输会员入手机号">
+                        <input type="text" placeholder="请输会员入手机号" @input="filter" v-model="searchValue">
+                    </div>
+                </div>
+                <div class="autocomplete-list form" v-show="expand" v-cloak>
+                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                        <label v-text="item"></label>
                     </div>
                 </div>
             </div>
@@ -70,7 +75,7 @@
             </div>
             <hr>
         </div>
-        <div class="tab-content s-scroll-y">
+        <div class="tab-content s-scroll-y" v-cloak>
             <div class="tab-pane fade in active" id="info">
                 <figure class="product-item" v-for="item in product.list">
                     <div class="img-wrap">
@@ -102,13 +107,13 @@
     <footer>
     <ul class="table-list">
         <li>
-            <a href="user.html">
+            <a :href="'user.html?' + queryString">
                 <i class="icon-search-q"></i>
                 <span>画像查询</span>
             </a>
         </li>
         <li>
-            <a href="userfocus.html">
+            <a :href="'userfocus.html?' + queryString">
                 <i class="icon-eye"></i>
                 <span>用户关注</span>
             </a>
@@ -125,22 +130,6 @@
 <script src="../statics/libs/jquery/jquery.min.js"></script>
 <script src="../statics/libs/bootstrap/js/bootstrap.min.js"></script>
 <script src="../statics/libs/vue/vue.min.js"></script>
-<template id="tpl-autocomplete-list">
-
-</template>
-<script>
-    (function(){
-//        Vue.component
-//        $(document).on("input", "[v-autocomplete]", function(e){
-//            var $target = $(e.target), $templete = $($("#tpl-autocomplete-list").html());
-//            var $list = $target.next(".autocomplete-list");
-//            $list.length || ($list = $templete);
-//
-//
-//        })
-    }());
-</script>
-
     <script src="../statics/js/userfocus.js"></script>
 </body>
 </html>
