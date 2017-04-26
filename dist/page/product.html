@@ -103,10 +103,12 @@
                         </div>
                         <div class="table-group">
                             <table v-if="product.list">
-                                <tr v-for="v, k in product.list">
-                                    <td v-text="k"></td>
-                                    <td v-text="v"></td>
-                                </tr>
+                                <template v-for="v, k in product.list">
+                                    <tr v-if="k!='img'">
+                                        <td v-text="k"></td>
+                                        <td v-text="v"></td>
+                                    </tr>
+                                </template>
                             </table>
                         </div>
                     </figure>
