@@ -2,12 +2,10 @@
 @title-size: 36pt;
 @header-height: 88pt;
 @footer-height: 98pt;
-
 @search-group-height: 86pt;
 
 body{
-  //font-family: "黑体";
-  font-size: 28pt;
+  font-size: 30pt;
   line-height: 1;
   color: @font-color;
   background-color: #fff;
@@ -77,6 +75,7 @@ footer{
   display: table;
   padding: 15pt;
   height: @search-group-height;
+  color: #666;
   background-color: #fff;
   border-top: 1px solid @border-color;
   border-bottom: 1px solid @border-color;
@@ -99,13 +98,14 @@ footer{
   .search-group-placement{
     box-sizing: content-box;
     width: 55pt;
-    padding-left: 18pt;
-    font-size: 18pt;
+    padding-left: 28pt;
+    white-space: nowrap;
   }
   .qrcode-group{
-    white-space: nowrap;
+    font-size: 18pt;
     text-align: center;
     vertical-align: middle;
+    white-space: nowrap;
     i{
       display: block;
       padding-bottom: 10pt;
@@ -176,6 +176,15 @@ hr{
   //height: calc(~'100%' - (@search-group-height));
   padding-top: @search-group-height;
   padding-bottom: @footer-height;
+}
+.tip-welcome{
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  font-size: 32pt;
+  text-align: center;
+  color: #636161;
+  transform: translateY(-50%);
 }
 
 

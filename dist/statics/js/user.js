@@ -62,7 +62,8 @@ var vueFooter = new Vue({
             expand: false,
             searchList: [], 
             searchValue_: "",
-            userData: {
+            userData: "",
+            fromData: {
                 "13266350113": [
                     {
                         title: "身份信息",
@@ -134,7 +135,7 @@ var vueFooter = new Vue({
                     this.searchValue_ = v;
                     this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
                     this.expand = true;
-                    var fromList = this.userData, arr = [];
+                    var fromList = this.fromData, arr = [];
                     if(v){
                         for(var k in fromList){
                             if(k.indexOf($.trim(v)) == 0){
@@ -147,6 +148,9 @@ var vueFooter = new Vue({
             },
             nodata: function(){
                 return this.searchValue && this.searchList && !this.searchList.length;
+            },
+            hasData: function(){
+                return !!this.userData;
             }
         },
         methods: {
@@ -155,7 +159,7 @@ var vueFooter = new Vue({
                 this.expand = false;
                 vueFooter.exportData = {userPhoneNumber: item};
                 var vm = init();
-                vm.userData = this.userData[item];
+                vm.userData = this.userData = this.fromData[item];
             },
             cancel: function(){
                 this.searchValue = "";
