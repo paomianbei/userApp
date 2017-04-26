@@ -10,27 +10,24 @@
             queryString: ""
         }
     });
-    var vm, vueSearch;
-
-    function init() {
-        vm = vm || new Vue({
-            el: ".tab-content",
-            data: {
-                product: {
-                    list: {},
-                    detail: {}
-                }
-            }
-        });
-        return vm;
-    }
-
+    var vueSearch;
     vueSearch = new Vue({
-        el: ".autocomplete-group",
+        el: ".main",
         data: {
             expand: false,
             searchList: [],
-            searchValue_: "",
+            searchValue: "",
+            searchValue_pre: "",
+            noResult: "",
+            noInit: true,
+            styles: {
+                completeTop: 0
+            },
+            product: {
+                list: null,
+                detail: null
+            },
+            //  静态数据
             fromData: {
                 list: {
                     "3888280": {
@@ -93,46 +90,58 @@
                         }
                     ]
                 }
-            },
-            styles: {
-                completeTop: 0
-            }
-        },
-        computed: {
-            searchValue: {
-                get: function(){
-                    return this.searchValue_;
-                },
-                set: function(v){
-                    this.searchValue_ = v;
-                    this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
-                    this.expand = true;
-                    var fromDetail = this.fromData.detail, arr = [];
-                    if(v){
-                        for(var k in fromDetail){
-                            if(k.indexOf($.trim(v)) == 0){
-                                arr.push(k);
-                            }
-                        }
-                    }
-                    this.searchList = arr;
-                }
-            },
-            nodata: function(){
-                return this.searchValue && this.searchList && !this.searchList.length;
             }
         },
         methods: {
+            getHisData: function(v){
+                var fromDetail = this.fromData.detail, arr = [];
+                if(v){
+                    for(var k in fromDetail){
+                        if(k.indexOf($.trim(v)) == 0){
+                            arr.push(k);
+                        }
+                    }
+                }
+                return arr;
+            },
+            getUserData: function(item){
+                var list = this.fromData.list[item], detail = this.fromData.detail[item];
+                if(!list || !detail)return null;
+                return {list: list, detail: detail};
+            },
             useItem: function (item) {
+                this.noInit = false;
                 this.searchValue = item;
+                this.searchValue_pre = this.searchValue;
                 this.expand = false;
-                var fromList = this.fromData.list, fromDetail = this.fromData.detail;
-                var vm = init();
-                vm.product.list = fromList[item];
-                vm.product.detail = fromDetail[item];
+
+                var result = this.getUserData(this.searchValue);
+                if(result){
+                    this.noResult = false;
+                    this.product.list = result.list;
+                    this.product.detail = result.detail;
+                }else{
+                    this.noResult = true;
+                    this.product.list = null;
+                    this.product.detail = null;
+                }
+            },
+            input: function(e){
+                var v = e.target.value;
+                this.searchValue_ = v;
+                this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
+                this.expand = true;
+                this.searchList = this.getHisData(v);
+            },
+            open: function () {
+                this.expand = true;
+                this.searchList = this.getHisData(this.searchValue);
+            },
+            enter: function(){
+                this.useItem(this.searchValue);
             },
             cancel: function(){
-                this.searchValue = "";
+                this.searchValue = this.searchValue_pre;
                 this.expand = false;
             }
         }

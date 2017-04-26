@@ -56,7 +56,7 @@
                 <div>
                     <div class="input-group full-width">
                         <i class="input-group-addon icon-search"></i>
-                        <input type="tel" placeholder="请输入会员手机号" v-model="searchValue">
+                        <input type="tel" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @input="input" @keyup.enter="enter">
                     </div>
                 </div>
                 <div class="search-group-placement" v-show="expand" @click="cancel">
@@ -64,50 +64,56 @@
                 </div>
             </div>
             <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
-                <div class="tip nodata" v-if="nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
-                <template v-else>
-                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
-                        <label v-text="item"></label>
-                    </div>
-                </template>
+                <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                    <label v-text="item"></label>
+                </div>
+            </div>
+            <div class="tip-wrap" v-if="noResult" :style="{top: styles.completeTop}">
+                <div class="tip nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
             </div>
         </div>
-        <div class="tab-container fixed full-width">
-            <div class="top-space"></div>
-            <div class="bg-white">
-                <ul class="tab-list">
-                    <li class="active"><a href="#info" data-toggle="tab">近期关注</a></li>
-                    <li><a href="#detail" data-toggle="tab">历史购买</a></li>
-                </ul>
-            </div>
-            <hr>
-        </div>
-        <div class="tab-content s-scroll-y" v-cloak>
-            <div class="tab-pane fade in active" id="info">
-                <figure class="product-item" v-for="item in product.list">
-                    <div class="img-wrap">
-                        <img :src="'../statics/images/demo/'+item.img" alt="">
-                    </div>
-                    <ul>
-                        <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
-                        <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
-                        <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
-                        <li><span class="title">最近一次关注：</span><span v-text="item['最近一次关注']"></span></li>
+        <div v-show="!noInit">
+            <div class="tab-container fixed full-width">
+                <div class="top-space"></div>
+                <div class="bg-white">
+                    <ul class="tab-list">
+                        <li class="active"><a href="#info" data-toggle="tab">近期关注</a></li>
+                        <li><a href="#detail" data-toggle="tab">历史购买</a></li>
                     </ul>
-                </figure>
+                </div>
+                <hr>
             </div>
-            <div class="tab-pane fade" id="detail">
-                <figure class="product-item" v-for="item in product.his">
-                    <div class="img-wrap">
-                        <img :src="'../statics/images/demo/'+item.img" alt="">
-                    </div>
-                    <ul>
-                        <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
-                        <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
-                        <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
-                        <li><span class="title">最近一次购买：</span><span v-text="item['最近一次购买']"></span></li>
-                    </ul>
-                </figure>
+            <div class="tab-content s-scroll-y">
+                <div class="tab-pane fade in active" id="info">
+                    <template v-if="product.list">
+                        <figure class="product-item" v-for="item in product.list">
+                            <div class="img-wrap">
+                                <img :src="'../statics/images/demo/'+item.img" alt="">
+                            </div>
+                            <ul>
+                                <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
+                                <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
+                                <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
+                                <li><span class="title">最近一次关注：</span><span v-text="item['最近一次关注']"></span></li>
+                            </ul>
+                        </figure>
+                    </template>
+                </div>
+                <div class="tab-pane fade" id="detail">
+                    <template v-if="product.his">
+                        <figure class="product-item" v-for="item in product.his">
+                            <div class="img-wrap">
+                                <img :src="'../statics/images/demo/'+item.img" alt="">
+                            </div>
+                            <ul>
+                                <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
+                                <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
+                                <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
+                                <li><span class="title">最近一次购买：</span><span v-text="item['最近一次购买']"></span></li>
+                            </ul>
+                        </figure>
+                    </template>
+                </div>
             </div>
         </div>
     </div>

@@ -65,7 +65,7 @@
                                 <li><a href="product.html">商品</a></li>
                             </ul>
                         </div>
-                        <input type="tel" placeholder="请输入会员手机号" v-model="searchValue">
+                        <input type="tel" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @input="input" @keyup.enter="enter">
                     </div>
                 </div>
                 <div class="search-group-placement" v-show="expand" @click="cancel">
@@ -73,14 +73,12 @@
                 </div>
             </div>
             <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
-                <div class="tip nodata" v-if="nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
-                <template v-else>
-                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
-                        <label v-text="item"></label>
-                    </div>
-                </template>
+                <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                    <label v-text="item"></label>
+                </div>
             </div>
-            <div class="tip-welcome" v-show="!hasData" :style="">HI，欢迎使用智能画像系统</div>
+            <div class="tip nodata" v-if="noResult" :style="{top: styles.completeTop}"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
+            <div class="tip-welcome" v-show="showEmptyTip">HI，欢迎使用智能画像系统</div>
         </div>
         <div class="user-list s-scroll-y" v-cloak>
             <div class="form">

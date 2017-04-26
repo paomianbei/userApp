@@ -61,8 +61,15 @@ var vueFooter = new Vue({
         data: {
             expand: false,
             searchList: [], 
-            searchValue_: "",
+            searchValue: "",
+            searchValue_pre: "",
             userData: "",
+            noResult: "",
+            styles: {
+                completeTop: 0
+            },
+
+            //  静态数据
             fromData: {
                 "13266350113": [
                     {
@@ -121,48 +128,59 @@ var vueFooter = new Vue({
                         }
                     }
                 ]
-            },
-            styles: {
-                completeTop: 0
             }
+
         },
         computed: {
-            searchValue: {
-                get: function(){
-                    return this.searchValue_;
-                },
-                set: function(v){
-                    this.searchValue_ = v;
-                    this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
-                    this.expand = true;
-                    var fromList = this.fromData, arr = [];
-                    if(v){
-                        for(var k in fromList){
-                            if(k.indexOf($.trim(v)) == 0){
-                                arr.push(k);
-                            }
-                        }
-                    }
-                    this.searchList = arr;
-                }
-            },
-            nodata: function(){
-                return this.searchValue && this.searchList && !this.searchList.length;
-            },
-            hasData: function(){
-                return !!this.userData;
+            showEmptyTip: function(){
+                return !(this.userData) && !this.noResult;
             }
         },
         methods: {
+            getHisData: function(v){
+                var fromList = this.fromData,
+                    arr = [];
+                if(v){
+                    for(var k in fromList){
+                        if(k.indexOf($.trim(v)) == 0){
+                            arr.push(k);
+                        }
+                    }
+                }
+                return arr;
+            },
+            getUserData: function(phone){
+                return this.fromData[phone];
+            },
             useItem: function(item){
                 this.searchValue = item;
+                this.searchValue_pre = this.searchValue;
                 this.expand = false;
-                vueFooter.exportData = {userPhoneNumber: item};
+
+                var result = this.getUserData(this.searchValue);
+                this.noResult = !result;
+
                 var vm = init();
-                vm.userData = this.userData = this.fromData[item];
+                vm.userData = this.userData = result;
+
+                vueFooter.exportData = {userPhoneNumber: item};
+            },
+            open: function () {
+                this.expand = true;
+                this.searchList = this.getHisData(this.searchValue);
+            },
+            input: function(e){
+                var v = e.target.value;
+                this.searchValue_ = v;
+                this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
+                this.expand = true;
+                this.searchList = this.getHisData(v);
+            },
+            enter: function(){
+                this.useItem(this.searchValue);
             },
             cancel: function(){
-                this.searchValue = "";
+                this.searchValue = this.searchValue_pre;
                 this.expand = false;
             }
         }
