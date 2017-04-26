@@ -37,9 +37,9 @@
             <div class="tip-wrap" v-if="noResult" :style="{top: styles.completeTop}">
                 <div class="tip nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
             </div>
-            <hr>
+            <div class="tip-welcome" v-show="noInit">HI，欢迎使用智能画像系统</div>
         </div>
-        <div v-show="!expand">
+        <div v-show="!noInit && !expand">
             <div class="tab-container fixed full-width">
                 <div class="top-space"></div>
                 <div class="bg-white">
@@ -51,7 +51,7 @@
                 </div>
                 <hr>
             </div>
-            <div class="tab-content" v-show="!noInit">
+            <div class="tab-content">
                 <div class="tab-pane fade in active" id="info">
                     <figure class="product-item v" v-if="product.list">
                         <div class="img-wrap">

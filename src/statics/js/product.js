@@ -110,20 +110,28 @@
                 return {list: list, detail: detail};
             },
             useItem: function (item) {
+                item = $.trim(item);
                 this.noInit = false;
                 this.searchValue = item;
                 this.searchValue_pre = this.searchValue;
                 this.expand = false;
-
-                var result = this.getUserData(this.searchValue);
-                if(result){
+                
+                if(!item){
+                    this.noInit = true;
                     this.noResult = false;
-                    this.product.list = result.list;
-                    this.product.detail = result.detail;
-                }else{
-                    this.noResult = true;
                     this.product.list = null;
                     this.product.detail = null;
+                }else{
+                    var result = this.getUserData(this.searchValue);
+                    if(result){
+                        this.noResult = false;
+                        this.product.list = result.list;
+                        this.product.detail = result.detail;
+                    }else{
+                        this.noResult = true;
+                        this.product.list = null;
+                        this.product.detail = null;
+                    }
                 }
             },
             input: function(e){
