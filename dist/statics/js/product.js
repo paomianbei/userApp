@@ -30,7 +30,7 @@
         data: {
             expand: false,
             searchList: [],
-            searchValue: "",
+            searchValue_: "",
             fromData: {
                 list: {
                     "3888280": {
@@ -98,22 +98,31 @@
                 completeTop: 0
             }
         },
-        methods: {
-            filter: function (e) {
-                this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
-                this.expand = true;
-                var fromDetail = this.fromData.detail;
-                var v = e.target.value;
-                var arr = [];
-                if(v){
-                    for(var k in fromDetail){
-                        if(k.indexOf($.trim(v)) == 0){
-                            arr.push(k);
+        computed: {
+            searchValue: {
+                get: function(){
+                    return this.searchValue_;
+                },
+                set: function(v){
+                    this.searchValue_ = v;
+                    this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
+                    this.expand = true;
+                    var fromDetail = this.fromData.detail, arr = [];
+                    if(v){
+                        for(var k in fromDetail){
+                            if(k.indexOf($.trim(v)) == 0){
+                                arr.push(k);
+                            }
                         }
                     }
+                    this.searchList = arr;
                 }
-                this.searchList = arr;
             },
+            nodata: function(){
+                return this.searchValue && this.searchList && !this.searchList.length;
+            }
+        },
+        methods: {
             useItem: function (item) {
                 this.searchValue = item;
                 this.expand = false;
@@ -121,6 +130,10 @@
                 var vm = init();
                 vm.product.list = fromList[item];
                 vm.product.detail = fromDetail[item];
+            },
+            cancel: function(){
+                this.searchValue = "";
+                this.expand = false;
             }
         }
     });

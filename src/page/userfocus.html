@@ -15,13 +15,20 @@
                         <input type="tel" placeholder="请输会员入手机号" v-model="searchValue">
                     </div>
                 </div>
-            </div>
-            <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
-                <div class="form-group" v-for="item in searchList" @click="useItem(item)">
-                    <label v-text="item"></label>
+                <div class="search-group-placement" v-show="expand" @click="cancel">
+                    取消
                 </div>
             </div>
-            <hr>
+            <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
+                <div class="tip nodata" v-if="nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
+                <template v-else>
+                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                        <label v-text="item"></label>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="tab-container fixed full-width">
             <div class="top-space"></div>
             <div class="bg-white">
                 <ul class="tab-list">

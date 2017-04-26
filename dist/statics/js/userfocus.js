@@ -112,6 +112,7 @@ var vueFooter = new Vue({
                     return this.searchValue_
                 },
                 set: function(v){
+                    this.searchValue_ = v;
                     this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
                     this.expand = true;
                     var fromList = ["13266350113", "13501227269"];
@@ -119,6 +120,9 @@ var vueFooter = new Vue({
                         return v && item.indexOf($.trim(v)) == 0 || false;
                     });
                 }
+            },
+            nodata: function(){
+                return this.searchValue && this.searchList && !this.searchList.length;
             }
         },
         methods: {
@@ -127,6 +131,10 @@ var vueFooter = new Vue({
                 this.expand = false;
                 init();
                 vueFooter.exportData = {userPhoneNumber: item}
+            },
+            cancel: function(){
+                this.searchValue = "";
+                this.expand = false;
             }
         }
     });

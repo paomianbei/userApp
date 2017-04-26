@@ -21,7 +21,7 @@
         data: {
             expand: false,
             searchList: [], 
-            searchValue: "", 
+            searchValue_: "",
             userData: {
                 "13266350113": [
                     {
@@ -85,27 +85,41 @@
                 completeTop: 0
             }
         },
-        methods: {
-            filter: function(e){
-                this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
-                this.expand = true;
-                var v = e.target.value;
-                var fromList = this.userData, arr = [];
-                if(v){
-                    for(var k in fromList){
-                        if(k.indexOf($.trim(v)) == 0){
-                            arr.push(k);
+        computed: {
+            searchValue: {
+                get: function(){
+                    return this.searchValue_;
+                },
+                set: function(v){
+                    this.searchValue_ = v;
+                    this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
+                    this.expand = true;
+                    var fromList = this.userData, arr = [];
+                    if(v){
+                        for(var k in fromList){
+                            if(k.indexOf($.trim(v)) == 0){
+                                arr.push(k);
+                            }
                         }
                     }
+                    this.searchList = arr;
                 }
-                this.searchList = arr;
             },
+            nodata: function(){
+                return this.searchValue && this.searchList && !this.searchList.length;
+            }
+        },
+        methods: {
             useItem: function(item){
                 this.searchValue = item;
                 this.expand = false;
                 vueFooter.exportData = {userPhoneNumber: item};
                 var vm = init();
                 vm.userData = this.userData[item];
+            },
+            cancel: function(){
+                this.searchValue = "";
+                this.expand = false;
             }
         }
     });

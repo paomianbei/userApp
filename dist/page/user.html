@@ -65,14 +65,20 @@
                                 <li><a href="product.html">商品</a></li>
                             </ul>
                         </div>
-                        <input type="tel" placeholder="请输会员入手机号" @input="filter" v-model="searchValue">
+                        <input type="tel" placeholder="请输会员入手机号" v-model="searchValue">
                     </div>
+                </div>
+                <div class="search-group-placement" v-show="expand" @click="cancel">
+                    取消
                 </div>
             </div>
             <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
-                <div class="form-group" v-for="item in searchList" @click="useItem(item)">
-                    <label v-text="item"></label>
-                </div>
+                <div class="tip nodata" v-if="nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
+                <template v-else>
+                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                        <label v-text="item"></label>
+                    </div>
+                </template>
             </div>
         </div>
         <div class="user-list s-scroll-y" v-cloak>
