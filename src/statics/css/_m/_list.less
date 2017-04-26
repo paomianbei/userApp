@@ -104,41 +104,35 @@
     }
   }
 }
-.product-detail{
-  @border-color: #e7e7e7;
-  padding: 50pt 20pt 0;
-  > table{
+.table-group{
+  padding: 50pt 20pt 20pt;
+  table{
+    @border-color: #e7e7e7;
+    @legend-color: #626262;
     width: 100%;
-    border: 2px solid @border-color;
+    border: 1px solid @border-color;
     border-collapse: collapse;
-    font-size: 32pt;
-    color: #93959e;
     background-color: #fff;
-    td{
-      border: 1px solid @border-color;
-    }
-  }
-  .table-group{
     font-size: 24pt;
-    color: #848689;
+    color: @legend-color;
     .legend{
       font-weight: bold;
-      color: #626262;
     }
     td{
       padding: 25pt 35pt;
       line-height: 35pt;
       text-align: left;
+      border: 1px solid @border-color;
     }
     td:first-child{
       width: 187pt;
     }
     td:last-child{
       font-size: 22pt;
+      color: #848689;
     }
-    + .table-group{
+    + table{
       margin-top: 0;
     }
   }
-
 }

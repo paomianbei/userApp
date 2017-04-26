@@ -101,15 +101,18 @@
                         <div class="img-wrap">
                             <img :src="'../statics/images/demo/'+product.list.img" alt="">
                         </div>
-                        <ul>
-                            <li v-for="v, k in product.list" v-if="k!='img'">
-                                <span class="title" v-text="k"></span><span v-text="v"></span>
-                            </li>
-                        </ul>
+                        <div class="table-group">
+                            <table v-if="product.list">
+                                <tr v-for="v, k in product.list">
+                                    <td v-text="k"></td>
+                                    <td v-text="v"></td>
+                                </tr>
+                            </table>
+                        </div>
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="detail">
-                    <div class="product-detail">
+                    <div class="table-group">
                         <table class="table-group" v-if="product.detail">
                             <tbody v-for="item in product.detail">
                             <tr>
