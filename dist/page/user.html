@@ -51,8 +51,8 @@
     <div class="header-text">智能画像</div>
 </header>
     <div class="main">
-        <div class="fixed full-width">
-            <div class="search-group full-width relative">
+        <div class="autocomplete-group">
+            <div class="search-group full-width fixed">
                 <div>
                     <div class="input-group full-width">
                         <div class="input-group-addon group-dropdown">
@@ -68,10 +68,10 @@
                         <input type="tel" placeholder="请输会员入手机号" @input="filter" v-model="searchValue">
                     </div>
                 </div>
-                <div class="autocomplete-list form" v-show="expand" v-cloak>
-                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
-                        <label v-text="item"></label>
-                    </div>
+            </div>
+            <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
+                <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                    <label v-text="item"></label>
                 </div>
             </div>
         </div>

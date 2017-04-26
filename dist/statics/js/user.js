@@ -57,11 +57,11 @@ var vueFooter = new Vue({
     }
     //输入检索
     vueSearch = new Vue({
-        el: ".search-group",
+        el: ".autocomplete-group",
         data: {
             expand: false,
             searchList: [], 
-            searchValue: "",
+            searchValue: "", 
             userData: {
                 "13266350113": [
                     {
@@ -120,10 +120,14 @@ var vueFooter = new Vue({
                         }
                     }
                 ]
+            },
+            styles: {
+                completeTop: 0
             }
         },
         methods: {
             filter: function(e){
+                this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
                 this.expand = true;
                 var v = e.target.value;
                 var fromList = this.userData, arr = [];

@@ -7,18 +7,18 @@
     @@include("src/page/parts/!ref.html")
     @@include("src/page/parts/!header.html")
     <div class="main">
-        <div class="fixed full-width">
-            <div class="search-group full-width relative">
+        <div class="autocomplete-group">
+            <div class="search-group full-width fixed">
                 <div>
                     <div class="input-group full-width">
                         <i class="input-group-addon icon-search"></i>
                         <input type="tel" placeholder="请输会员入手机号" v-model="searchValue">
                     </div>
                 </div>
-                <div class="autocomplete-list form" v-show="expand" v-cloak>
-                    <div class="form-group" v-for="item in searchList" @click="useItem(item)">
-                        <label v-text="item"></label>
-                    </div>
+            </div>
+            <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
+                <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                    <label v-text="item"></label>
                 </div>
             </div>
             <hr>

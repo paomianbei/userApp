@@ -26,7 +26,7 @@
     }
 
     vueSearch = new Vue({
-        el: ".search-group",
+        el: ".autocomplete-group",
         data: {
             expand: false,
             searchList: [],
@@ -93,10 +93,14 @@
                         }
                     ]
                 }
+            },
+            styles: {
+                completeTop: 0
             }
         },
         methods: {
             filter: function (e) {
+                this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
                 this.expand = true;
                 var fromDetail = this.fromData.detail;
                 var v = e.target.value;

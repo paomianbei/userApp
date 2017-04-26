@@ -57,11 +57,14 @@
         });
     }
     vueSearch = new Vue({
-        el: ".search-group",
+        el: ".autocomplete-group",
         data: {
             expand: false,
             searchList: [],
-            searchValue_: ""
+            searchValue_: "",
+            styles: {
+                completeTop: 0
+            }
         },
         computed: {
             searchValue: {
@@ -69,6 +72,7 @@
                     return this.searchValue_
                 },
                 set: function(v){
+                    this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
                     this.expand = true;
                     var fromList = ["13266350113", "13501227269"];
                     this.searchList = fromList.filter(function(item){
