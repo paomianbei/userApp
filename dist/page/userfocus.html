@@ -56,12 +56,10 @@
                 <div>
                     <div class="input-group full-width">
                         <i class="input-group-addon icon-search"></i>
-                        <input type="tel" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @input="input" @keyup.enter="enter">
+                        <input type="text" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @input="input" @keyup.enter="enter">
                     </div>
                 </div>
-                <div class="search-group-placement" v-show="expand" @click="cancel">
-                    取消
-                </div>
+                <div class="search-group-placement" v-show="expand" @click="cancel">取消</div>
             </div>
             <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
                 <div class="form-group" v-for="item in searchList" @click="useItem(item)">
@@ -72,7 +70,7 @@
                 <div class="tip nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
             </div>
         </div>
-        <div v-show="!noInit">
+        <div v-show="!expand">
             <div class="tab-container fixed full-width">
                 <div class="top-space"></div>
                 <div class="bg-white">
@@ -99,7 +97,7 @@
                         </figure>
                     </template>
                 </div>
-                <div class="tab-pane fade" id="detail">
+                <div class="tab-pane fade" id="detail" v-show="!noInit">
                     <template v-if="product.his">
                         <figure class="product-item" v-for="item in product.his">
                             <div class="img-wrap">

@@ -5,19 +5,10 @@
     $(".table-list li:eq(0)").addClass("active");
 
     @@include("src/page/parts/!bindValue.js")
-    var vm, vueSearch;
-    function init(){
-        vm = vm || new Vue({
-            el: ".user-list",
-            data: {
-                userData: {}
-            }
-        });
-        return vm;
-    }
+    var vueSearch;
     //输入检索
     vueSearch = new Vue({
-        el: ".autocomplete-group",
+        el: ".main",
         data: {
             expand: false,
             searchList: [], 
@@ -25,6 +16,7 @@
             searchValue_pre: "",
             userData: "",
             noResult: "",
+            noInit: true,
             styles: {
                 completeTop: 0
             },
@@ -52,11 +44,10 @@
                         }
                     },
                     {
-                        title: "注册信息",
+                        title: "偏好标签",
                         detail: {
-                            "是否注册": "是",
-                            "城市": "2015/7/1",
-                            "注册距今天": "12天"
+                            "时段偏好": "9:00  0.5",
+                            "站点偏好": "PC/WAP/APP"
                         }
                     }
                 ],
@@ -91,11 +82,6 @@
             }
 
         },
-        computed: {
-            showEmptyTip: function(){
-                return !(this.userData) && !this.noResult;
-            }
-        },
         methods: {
             getHisData: function(v){
                 var fromList = this.fromData,
@@ -113,6 +99,7 @@
                 return this.fromData[phone];
             },
             useItem: function(item){
+                this.noInit = false;
                 this.searchValue = item;
                 this.searchValue_pre = this.searchValue;
                 this.expand = false;
@@ -120,8 +107,7 @@
                 var result = this.getUserData(this.searchValue);
                 this.noResult = !result;
 
-                var vm = init();
-                vm.userData = this.userData = result;
+                this.userData = result;
 
                 vueFooter.exportData = {userPhoneNumber: item};
             },
@@ -147,7 +133,6 @@
     });
     // 画像查询的会员页面跳转到用户关注，把会员手机号码带过去
     if(queryData.userPhoneNumber){
-        init();
         vueSearch.useItem(queryData.userPhoneNumber);
         vueFooter.exportData = queryData;
     }

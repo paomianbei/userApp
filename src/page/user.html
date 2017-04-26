@@ -6,7 +6,7 @@
 <body>
     @@include("src/page/parts/!ref.html")
     @@include("src/page/parts/!header.html")
-    <div class="main">
+    <div class="main" v-cloak>
         <div class="autocomplete-group">
             <div class="search-group full-width fixed">
                 <div>
@@ -21,12 +21,10 @@
                                 <li><a href="product.html">商品</a></li>
                             </ul>
                         </div>
-                        <input type="tel" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @input="input" @keyup.enter="enter">
+                        <input type="text" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @input="input" @keyup.enter="enter">
                     </div>
                 </div>
-                <div class="search-group-placement" v-show="expand" @click="cancel">
-                    取消
-                </div>
+                <div class="search-group-placement" v-show="expand" @click="cancel">取消</div>
             </div>
             <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
                 <div class="form-group" v-for="item in searchList" @click="useItem(item)">
@@ -34,9 +32,9 @@
                 </div>
             </div>
             <div class="tip nodata" v-if="noResult" :style="{top: styles.completeTop}"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
-            <div class="tip-welcome" v-show="showEmptyTip">HI，欢迎使用智能画像系统</div>
+            <div class="tip-welcome" v-show="noInit">HI，欢迎使用智能画像系统</div>
         </div>
-        <div class="user-list s-scroll-y" v-cloak>
+        <div class="user-list" v-show="!noInit && !expand">
             <div class="form">
                 <fieldset v-for="item in userData">
                     <legend v-text="item.title">用户身份</legend>
