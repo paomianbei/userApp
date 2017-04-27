@@ -13,6 +13,9 @@
                     <div class="input-group full-width">
                         <i class="input-group-addon icon-search"></i>
                         <input type="text" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @input="input" @keyup.enter="enter">
+                        <div class="input-group-addon" @click="clear">
+                            <i class="icon-clear"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="search-group-placement" v-show="expand" @click="cancel">取消</div>
@@ -46,10 +49,11 @@
                                 <img :src="'../statics/images/demo/'+item.img" alt="">
                             </div>
                             <ul>
-                                <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
-                                <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
-                                <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
-                                <li><span class="title">最近一次关注：</span><span v-text="item['最近一次关注']"></span></li>
+                                <li v-for="v, k in item">
+                                    <template v-if="k!='img'">
+                                        <span class="title" v-text="k"></span>：<span v-text="v"></span>
+                                    </template>
+                                </li>
                             </ul>
                         </figure>
                     </template>
@@ -61,10 +65,11 @@
                                 <img :src="'../statics/images/demo/'+item.img" alt="">
                             </div>
                             <ul>
-                                <li><span class="title">商品名称：</span><span v-text="item['商品名称']"></span></li>
-                                <li><span class="title">商品编号：</span><span v-text="item['商品编号']"></span></li>
-                                <li><span class="title">库存：</span><span v-text="item['库存']"></span></li>
-                                <li><span class="title">最近一次购买：</span><span v-text="item['最近一次购买']"></span></li>
+                                <li v-for="v, k in item">
+                                    <template v-if="k!='img'">
+                                        <span class="title" v-text="k"></span>：<span v-text="v"></span>
+                                    </template>
+                                </li>
                             </ul>
                         </figure>
                     </template>

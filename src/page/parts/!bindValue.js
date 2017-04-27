@@ -2,7 +2,6 @@
  * Created by weikaiwei on 2017/4/25.
  */
 
-
 var queryData = (function(){
     var obj = {}, s = location.search,
         arr = s.substring(s.indexOf("?") + 1).split("&");

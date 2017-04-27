@@ -68,7 +68,7 @@
             </a>
         </li>
         <li>
-            <a href="unwork.html">
+            <a :href="'unwork.html?' + queryString">
                 <i class="icon-thumb"></i>
                 <span>销售推荐</span>
             </a>
@@ -79,16 +79,6 @@
 <script src="../statics/libs/jquery/jquery.min.js"></script>
 <script src="../statics/libs/bootstrap/js/bootstrap.min.js"></script>
 <script src="../statics/libs/vue/vue.min.js"></script>
-<script>
-    (function(){
-        $(".table-list li:eq(2)").addClass("active");
-        var vueFooter = new Vue({
-            el: "footer",
-            data: {
-                queryString: ""
-            }
-        });
-    }());
-</script>
+<script src="../statics/js/sale.js"></script>
 </body>
 </html>

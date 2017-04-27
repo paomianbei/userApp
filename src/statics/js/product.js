@@ -148,9 +148,12 @@
             enter: function(){
                 this.useItem(this.searchValue);
             },
-            cancel: function(){
+            cancel: function(){ 
                 this.searchValue = this.searchValue_pre;
                 this.expand = false;
+            },
+            clear: function(){
+                this.searchValue = "";
             }
         }
     });

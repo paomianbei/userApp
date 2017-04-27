@@ -84,7 +84,8 @@ footer{
     vertical-align: middle;
   }
   .input-group{
-    height: 56pt;
+    @group-height: 56pt;
+    height: @group-height;
     background-color: #e9e8e7;
     vertical-align: middle;
     >input{
@@ -93,6 +94,13 @@ footer{
     }
     .input-group-addon{
       padding-left: 20pt;
+    }
+    .icon-clear{
+      @margin: 15pt;
+      @size: 28pt;
+      padding-right: 5pt;
+      font-size: @size;
+      line-height: @group-height;
     }
   }
   .search-group-placement{

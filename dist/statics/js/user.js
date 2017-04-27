@@ -8,7 +8,6 @@
  * Created by weikaiwei on 2017/4/25.
  */
 
-
 var queryData = (function(){
     var obj = {}, s = location.search,
         arr = s.substring(s.indexOf("?") + 1).split("&");
@@ -67,6 +66,8 @@ var vueFooter = new Vue({
                     {
                         title: "身份信息",
                         detail: {
+                            "年龄": "25-35",
+                            "性别":"男性",
                             "省份": "广东",
                             "城市": "广州",
                             "小区": "",
@@ -79,13 +80,16 @@ var vueFooter = new Vue({
                         title: "注册信息",
                         detail: {
                             "是否注册": "是",
-                            "城市": "2015/7/1",
-                            "注册距今天": "12天"
+                            "注册日期": "2015/7/1",
+                            "注册距今天": "666天"
                         }
                     },
-                    {
+                    { 
                         title: "偏好标签",
                         detail: {
+                            "品类偏好": "手机/电视/数码相机",
+                            "品牌偏好":"苹果/佳能/海信",
+                            "产品词偏好":"手机/智能电视/单反",
                             "时段偏好": "9:00  0.5",
                             "站点偏好": "PC/WAP/APP"
                         }
@@ -95,6 +99,8 @@ var vueFooter = new Vue({
                     {
                         title: "身份信息",
                         detail: {
+                            "年龄": "25-35",
+                            "性别":"男性",
                             "省份": "北京",
                             "城市": "北京",
                             "小区": "西坝河西里小区",
@@ -107,13 +113,16 @@ var vueFooter = new Vue({
                         title: "注册信息",
                         detail: {
                             "是否注册": "是",
-                            "城市": "2017/4/24",
-                            "注册距今天": "1天"
+                            "注册日期": "2017/4/24",
+                            "注册距今天": "3天"
                         }
                     },
                     {
                         title: "偏好标签",
                         detail: {
+                            "品类偏好": "洗衣机/热水器/烟灶",
+                            "品牌偏好":"海尔/a.o史密斯/老板",
+                            "产品词偏好":"滚筒洗衣机/节能热水器/灶台套装",
                             "时段偏好": "15:30  0.5",
                             "站点偏好": "APP"
                         }
@@ -176,6 +185,9 @@ var vueFooter = new Vue({
             cancel: function(){
                 this.searchValue = this.searchValue_pre;
                 this.expand = false;
+            },
+            clear: function(){
+                this.searchValue = "";
             }
         }
     });

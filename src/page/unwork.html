@@ -10,16 +10,6 @@
     <div class="tip unwork"><i class="icon-warning"></i>此功能尚未开放</div>
 </div>
 @@include("src/page/parts/!footer.html")
-<script>
-    (function(){
-        $(".table-list li:eq(2)").addClass("active");
-        var vueFooter = new Vue({
-            el: "footer",
-            data: {
-                queryString: ""
-            }
-        });
-    }());
-</script>
+<script src="${rc.contextPath}/statics/js/sale.js"></script>
 </body>
 </html>

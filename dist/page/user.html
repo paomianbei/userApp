@@ -66,6 +66,9 @@
                             </ul>
                         </div>
                         <input type="text" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @input="input" @keyup.enter="enter">
+                        <div class="input-group-addon" @click="clear">
+                            <i class="icon-clear"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="search-group-placement" v-show="expand" @click="cancel">取消</div>
@@ -107,7 +110,7 @@
             </a>
         </li>
         <li>
-            <a href="unwork.html">
+            <a :href="'unwork.html?' + queryString">
                 <i class="icon-thumb"></i>
                 <span>销售推荐</span>
             </a>

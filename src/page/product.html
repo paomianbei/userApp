@@ -22,6 +22,9 @@
                             </ul>
                         </div>
                         <input type="text" placeholder="请输入商品编号" v-model="searchValue" @focus="open" @input="input" @keyup.enter="enter">
+                        <div class="input-group-addon" @click="clear">
+                            <i class="icon-clear"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="search-group-placement" v-if="expand" @click="cancel">取消</div>
