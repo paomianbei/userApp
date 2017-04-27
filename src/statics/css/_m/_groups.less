@@ -28,6 +28,10 @@
   font-size: 28pt;
   @color: #8e8e93;
   color: @color;
+  > *{
+    display: table-cell;
+    vertical-align: middle;
+  }
   > :first-child{
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -52,7 +56,6 @@
     padding-left: 15pt;
   }
   input:not([type]), input[type="email"], input[type="number"], input[type="password"], input[type="tel"], input[type="url"], input[type="text"]{
-    display: table-cell;
     padding: 0;
     width: 100%;
     border: none;
@@ -67,4 +70,11 @@
 .input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child>.btn, .input-group-btn:first-child>.btn-group>.btn, .input-group-btn:first-child>.dropdown-toggle, .input-group-btn:last-child>.btn-group:not(:last-child)>.btn, .input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle){
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.search-group{
+  >*{
+    display: table-cell;
+    vertical-align: middle;
+  }
 }

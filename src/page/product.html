@@ -21,7 +21,9 @@
                                 <li><a href="product.html">商品</a></li>
                             </ul>
                         </div>
-                        <input type="text" placeholder="请输入商品编号" v-model="searchValue" @focus="open" @keyup.enter="enter">
+                        <div>
+                            <input type="text" placeholder="请输入商品编号" v-model="searchValue" @focus="open" @keyup.enter="enter">
+                        </div>
                         <div class="input-group-addon" @click="clear">
                             <i class="icon-clear"></i>
                         </div>

@@ -5,6 +5,7 @@
 @search-group-height: 86pt;
 
 body{
+  font-family: "";
   font-size: 30pt;
   line-height: 1;
   color: @font-color;
@@ -79,19 +80,11 @@ footer{
   background-color: #fff;
   border-top: 1px solid @border-color;
   border-bottom: 1px solid @border-color;
-  >*{
-    display: table-cell;
-    vertical-align: middle;
-  }
   .input-group{
     @group-height: 56pt;
     height: @group-height;
     background-color: #e9e8e7;
     vertical-align: middle;
-    >input{
-      height: 100%; // uc
-      vertical-align: middle;
-    }
     .input-group-addon{
       padding-left: 20pt;
     }
