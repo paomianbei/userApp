@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>智能画像</title>
+</head>
+<body>
+    @@include("src/page/parts/!ref.html")
+    @@include("src/page/parts/!header.html")
+    <div class="main">
+        <div class="autocomplete-group">
+            <div class="search-group full-width fixed">
+                <div>
+                    <div class="input-group full-width">
+                        <i class="input-group-addon icon-search"></i>
+                        <div>
+                            <input type="text" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @keyup.enter="enter">
+                        </div>
+                        <div class="input-group-addon" v-show="searchValue" @click="clear">
+                            <i class="icon-clear"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-group-placement" v-show="expand" @click="cancel">取消</div>
+            </div>
+            <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
+                <div class="form-group" v-for="item in searchList" @click="useItem(item)">
+                    <label v-text="item"></label>
+                </div>
+            </div>
+            <div class="tip-wrap" v-if="noResult" :style="{top: styles.completeTop}">
+                <div class="tip nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
+            </div>
+            <div class="tip-welcome" v-show="noInit">HI，欢迎使用智能画像系统</div>
+        </div>
+        <div class="main-content" v-show="!noInit && !expand">
+            <template v-if="product.list">
+                <figure class="product-item" v-for="item in product.list">
+                    <div class="img-wrap">
+                        <img :src="'../statics/images/demo/'+item.img" alt="">
+                    </div>
+                    <ul>
+                        <li v-for="v, k in item">
+                            <template v-if="k!='img'">
+                                <span class="title" v-text="k"></span>：<span v-text="v"></span>
+                            </template>
+                        </li>
+                    </ul>
+                </figure>
+            </template>
+        </div>
+    </div>
+    @@include("src/page/parts/!footer.html")
+    <script src="${rc.contextPath}/statics/js/recommend.js"></script>
+</body>
+</html>
