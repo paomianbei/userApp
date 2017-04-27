@@ -68,7 +68,7 @@
                         <div>
                             <input type="text" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @keyup.enter="enter">
                         </div>
-                        <div class="input-group-addon" @click="clear">
+                        <div class="input-group-addon" v-show="searchValue" @click="clear">
                             <i class="icon-clear"></i>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
             <div class="tip nodata" v-if="noResult" :style="{top: styles.completeTop}"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
             <div class="tip-welcome" v-show="noInit">HI，欢迎使用智能画像系统</div>
         </div>
-        <div class="user-list" v-show="!noInit && !expand">
+        <div class="main-content" v-show="!noInit && !expand">
             <div class="form">
                 <fieldset v-for="item in userData">
                     <legend v-text="item.title">用户身份</legend>
@@ -112,7 +112,7 @@
             </a>
         </li>
         <li>
-            <a :href="'unwork.html?' + queryString">
+            <a :href="'recommend.html?' + queryString">
                 <i class="icon-thumb"></i>
                 <span>销售推荐</span>
             </a>

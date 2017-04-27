@@ -15,7 +15,7 @@
                         <div>
                             <input type="text" placeholder="请输入会员手机号" v-model="searchValue" @focus="open" @keyup.enter="enter">
                         </div>
-                        <div class="input-group-addon" @click="clear">
+                        <div class="input-group-addon" v-show="searchValue" @click="clear">
                             <i class="icon-clear"></i>
                         </div>
                     </div>
