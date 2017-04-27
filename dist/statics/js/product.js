@@ -25,7 +25,8 @@
             },
             product: {
                 list: null,
-                detail: null
+                detail: null,
+                compare: null
             },
             //  静态数据
             fromData: {
@@ -89,6 +90,28 @@
                             }
                         }
                     ]
+                },
+                compare: {
+                    "3888280": {
+                        value: "4688",
+                        detail: {
+                            "国美互联网": "4688",
+                            "苏宁易购": "4688",
+                            "苏宁电器": "4588",
+                            "京东商城": "4699",
+                            "天猫旗舰店": "4688"
+                        }
+                    },
+                    "3749093": {
+                        value: "4788",
+                        detail: {
+                            "国美互联网": "4788",
+                            "苏宁易购": "4688",
+                            "苏宁电器": "4900",
+                            "京东商城": "4699",
+                            "天猫旗舰店": "4688"
+                        }
+                    }
                 }
             }
         },
@@ -116,9 +139,8 @@
                 return arr;
             },
             getUserData: function(item){
-                var list = this.fromData.list[item], detail = this.fromData.detail[item];
-                if(!list || !detail)return null;
-                return {list: list, detail: detail};
+                var list = this.fromData.list[item], detail = this.fromData.detail[item], compare = this.fromData.compare[item];
+                return {list: list, detail: detail, compare: compare};
             },
             useItem: function (item) {
                 item = $.trim(item);
@@ -130,18 +152,17 @@
                 if(!item){
                     this.noInit = true;
                     this.noResult = false;
-                    this.product.list = null;
-                    this.product.detail = null;
+                    this.product = {};
                 }else{
                     var result = this.getUserData(this.searchValue);
                     if(result){
                         this.noResult = false;
                         this.product.list = result.list;
                         this.product.detail = result.detail;
+                        this.product.compare = result.compare;
                     }else{
                         this.noResult = true;
-                        this.product.list = null;
-                        this.product.detail = null;
+                        this.product = {};
                     }
                 }
             },
