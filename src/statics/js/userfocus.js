@@ -11,7 +11,7 @@
         data: {
             expand: false,
             searchList: [],
-            searchValue: "",
+            searchValue_: "",
             searchValue_pre: "",
             noResult: "",
             noInit: true,
@@ -109,6 +109,17 @@
                 }
             }
         },
+        computed: {
+            searchValue: {
+                get: function(){return this.searchValue_},
+                set: function(v){
+                    this.searchValue_ = v;
+                    this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
+                    this.expand = true;
+                    this.searchList = this.getHisData(v);
+                }
+            }
+        },
         methods: {
             getHisData: function(v){
                 var fromList = this.fromData.list,
@@ -153,13 +164,6 @@
                 }
 
                 vueFooter.exportData = {userPhoneNumber: item}
-            },
-            input: function(e){
-                var v = e.target.value;
-                this.searchValue_ = v;
-                this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
-                this.expand = true;
-                this.searchList = this.getHisData(v);
             },
             open: function () {
                 this.expand = true;

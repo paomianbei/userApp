@@ -12,7 +12,7 @@
         data: {
             expand: false,
             searchList: [], 
-            searchValue: "",
+            searchValue_: "",
             searchValue_pre: "",
             userData: "",
             noResult: "",
@@ -45,7 +45,7 @@
                             "注册距今天": "666天"
                         }
                     },
-                    { 
+                    {
                         title: "偏好标签",
                         detail: {
                             "品类偏好": "手机/电视/数码相机",
@@ -90,7 +90,17 @@
                     }
                 ]
             }
-
+        },
+        computed: {
+            searchValue: {
+                get: function(){return this.searchValue_},
+                set: function(v){
+                    this.searchValue_ = v;
+                    this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
+                    this.expand = true;
+                    this.searchList = this.getHisData(v);
+                }
+            }
         },
         methods: {
             getHisData: function(v){
@@ -132,13 +142,6 @@
             open: function () {
                 this.expand = true;
                 this.searchList = this.getHisData(this.searchValue);
-            },
-            input: function(e){
-                var v = e.target.value;
-                this.searchValue_ = v;
-                this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
-                this.expand = true;
-                this.searchList = this.getHisData(v);
             },
             enter: function(){
                 this.useItem(this.searchValue);

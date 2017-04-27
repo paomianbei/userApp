@@ -4,7 +4,7 @@
 (function(){
     $(".table-list li:eq(2)").addClass("active"); 
 
-    '/**
+    /**
  * Created by weikaiwei on 2017/4/25.
  */
 
@@ -43,7 +43,7 @@ var vueFooter = new Vue({
     created: function(){
         this.queryString = queryData.userPhoneNumber || "";
     }
-});'
+});
 
     // 用户关注页面跳转到画像查询的会员，把会员手机号码带过去
     if(queryData.userPhoneNumber){
