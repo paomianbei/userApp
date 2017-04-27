@@ -108,12 +108,12 @@
                         </div>
                         <div class="table-group">
                             <table v-if="product.list">
-                                <template v-for="v, k in product.list">
+                                <tbody v-for="v, k in product.list">
                                     <tr v-if="k!='img'">
                                         <td v-text="k"></td>
                                         <td v-text="v" class="color-black-5"></td>
                                     </tr>
-                                </template>
+                                </tbody>
                             </table>
                         </div>
                     </figure>
@@ -121,7 +121,7 @@
                 <div class="tab-pane fade" id="detail">
                     <div class="table-group">
                         <table class="table-group" v-if="product.detail">
-                            <template v-for="item in product.detail">
+                            <tbody v-for="item in product.detail">
                                 <tr>
                                     <td class="legend" colspan="2" v-text="item.title"></td>
                                 </tr>
@@ -129,7 +129,7 @@
                                     <td v-text="k"></td>
                                     <td v-text="v" class="color-black-5"></td>
                                 </tr>
-                            </template>
+                            </tbody>
                         </table>
                     </div>
                 </div>

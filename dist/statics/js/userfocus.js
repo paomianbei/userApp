@@ -52,7 +52,7 @@ var vueFooter = new Vue({
             searchList: [],
             searchValue_: "",
             searchValue_pre: "",
-            noResult: "",
+            noResult_: "",
             noInit: true,
             styles: {
                 completeTop: 0
@@ -153,9 +153,16 @@ var vueFooter = new Vue({
                 get: function(){return this.searchValue_},
                 set: function(v){
                     this.searchValue_ = v;
-                    this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
                     this.expand = true;
+                    this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
                     this.searchList = this.getHisData(v);
+                }
+            },
+            noResult: {
+                get: function () {return this.noResult_},
+                set: function (v) {
+                    this.noResult_ = v;
+                    if(v)this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
                 }
             }
         },
@@ -179,9 +186,8 @@ var vueFooter = new Vue({
             },
             useItem: function(item){
                 item = $.trim(item);
-                this.noInit = false;
-                this.searchValue = item;
-                this.searchValue_pre = this.searchValue;
+                this.noInit = false; 
+                this.searchValue_ = this.searchValue_pre = item;
                 this.expand = false;
 
                 if(!item){
