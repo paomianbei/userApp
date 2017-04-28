@@ -218,7 +218,7 @@ hr{
   height: @block-height;
   line-height: @block-height;
   font-size: 30pt;
-  color: #6c5658;
+  color: #666;
   background-color: #eaeaea;
   &.nodata{
     background-color: #ffdfe0;
@@ -232,4 +232,12 @@ hr{
     line-height: inherit;
     color: #f76160;
   }
+}
+
+//不能使用伪元素，不能用 display:none; 或者 visibility: hidden;
+.vue-fix{
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
 }

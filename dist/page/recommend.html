@@ -77,17 +77,18 @@
             <div class="tip-welcome" v-show="noInit">HI，欢迎使用智能画像系统</div>
         </div>
         <div class="main-content" v-show="!noInit && !expand">
+            <div class="vue-fix">.</div>
             <template v-if="product.list">
                 <figure class="product-item" v-for="item in product.list">
                     <div class="img-wrap">
                         <img :src="'../statics/images/demo/'+item.img" alt="">
                     </div>
                     <ul>
-                        <li v-for="v, k in item">
-                            <template v-if="k!='img'">
-                                <span class="title" v-text="k"></span>：<span v-text="v"></span>
-                            </template>
-                        </li>
+                        <template v-for="v, k in item">
+                            <li v-if="k!='img'">
+                                <span class="title" v-text="k"></span>：<span class="color-black-4" v-text="v"></span>
+                            </li>
+                        </template>
                     </ul>
                 </figure>
             </template>

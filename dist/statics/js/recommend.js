@@ -44,6 +44,51 @@ var vueFooter = new Vue({
         this.queryString = queryData.userPhoneNumber || "";
     }
 });
+
+    //  静态数据
+    var fromData = {
+        list: {
+            "13266350113": [
+                {
+                    img: "camera.jpg",
+                    "商品名称": "佳能相机EOSM3双镜头EFM18-55ISSTM/EF-M55-200STM黑",
+                    "商品编号": "100382094",
+                    "库存": "9654台",
+                    "价格": "4699元"
+                },
+                {
+                    img: "sony_camera.png",
+                    "商品名称": "索尼（SONY） RX100M3 黑卡数码照相机RX100III/rx100m3 黑卡三代(官方标配（无卡包）)",
+                    "商品编号": "8003806917",
+                    "库存": "3243台",
+                    "价格": "4238元"
+                }
+            ],
+                "13501227269": [
+                {
+                    img: "haier.jpg",
+                    "商品名称": "海尔（Haier）XQG80-HB14636 8公斤变频滚筒洗衣机",
+                    "商品编号": "8008295813",
+                    "库存": "12347台",
+                    "价格": "3699元"
+                },
+                {
+                    img: "SIEMENS_washing.png",
+                    "商品名称": "西门子(SIEMENS) XQG80-WM12P2688W 8kg 滚筒洗衣机（银色）",
+                    "商品编号": "100418863",
+                    "库存": "2543台",
+                    "价格": "3399元"
+                },
+                {
+                    img: "panasonic_washing.png",
+                    "商品名称": "松下(Panasonic) XQG80-E8225 8公斤 变频全自动滚筒洗衣机（银色） 6项精准智控 高效变频电机",
+                    "商品编号": "100416075",
+                    "库存": "4512台",
+                    "价格": "3498元"
+                }
+            ]
+        }
+    };
     var vueSearch;
     vueSearch = new Vue({
         el: ".main",
@@ -59,51 +104,7 @@ var vueFooter = new Vue({
             },
 
             product: {
-                list: null
-            },
-            //  静态数据
-            fromData: {
-                list: {
-                    "13266350113": [
-                        {
-                            img: "camera.jpg",
-                            "商品名称": "佳能相机EOSM3双镜头EFM18-55ISSTM/EF-M55-200STM黑",
-                            "商品编号": "100382094",
-                            "库存": "9654台",
-                            "价格": "4699元"
-                        },
-                        {
-                            img: "sony_camera.png",
-                            "商品名称": "索尼（SONY） RX100M3 黑卡数码照相机RX100III/rx100m3 黑卡三代(官方标配（无卡包）)",
-                            "商品编号": "8003806917",
-                            "库存": "3243台",
-                            "价格": "4238元"
-                        }
-                    ],
-                    "13501227269": [
-                        {
-                            img: "haier.jpg",
-                            "商品名称": "海尔（Haier）XQG80-HB14636 8公斤变频滚筒洗衣机",
-                            "商品编号": "8008295813",
-                            "库存": "12347台",
-                            "价格": "3699元"
-                        },
-                        {
-                            img: "SIEMENS_washing.png",
-                            "商品名称": "西门子(SIEMENS) XQG80-WM12P2688W 8kg 滚筒洗衣机（银色）",
-                            "商品编号": "100418863",
-                            "库存": "2543台",
-                            "价格": "3399元"
-                        }, 
-                        {
-                            img: "panasonic_washing.png",
-                            "商品名称": "松下(Panasonic) XQG80-E8225 8公斤 变频全自动滚筒洗衣机（银色） 6项精准智控 高效变频电机",
-                            "商品编号": "100416075",
-                            "库存": "4512台",
-                            "价格": "3498元"
-                        }
-                    ]
-                }
+                list: {}
             }
         },
         computed: {
@@ -126,7 +127,7 @@ var vueFooter = new Vue({
         },
         methods: {
             getHisData: function(v){
-                var fromList = this.fromData.list,
+                var fromList = fromData.list,
                     arr = [];
                 if(v){
                     for(var k in fromList){
@@ -138,7 +139,7 @@ var vueFooter = new Vue({
                 return arr;
             },
             getUserData: function(item){
-                var list = this.fromData.list[item];
+                var list = fromData.list[item];
                 if(!list)return null;
                 return {list: list};
             },
@@ -146,7 +147,7 @@ var vueFooter = new Vue({
                 item = $.trim(item);
                 this.noInit = false;
                 this.searchValue_ = this.searchValue_pre = item;
-                this.expand = false; 
+
 
                 if(!item){
                     this.noInit = true;
@@ -161,7 +162,7 @@ var vueFooter = new Vue({
                         this.noResult = true;
                         this.product = {};
                     }
-                }
+                }this.expand = false;
                 vueFooter.exportData = {userPhoneNumber: item}
             },
             open: function () {

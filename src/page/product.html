@@ -67,7 +67,7 @@
                                 <tbody v-for="v, k in product.list">
                                     <tr v-if="k!='img'">
                                         <td v-text="k"></td>
-                                        <td v-text="v" class="color-black-5"></td>
+                                        <td v-text="v" class="color-black-4"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -83,7 +83,7 @@
                                 </tr>
                                 <tr v-for="v, k in item.detail">
                                     <td v-text="k"></td>
-                                    <td v-text="v" class="color-black-5"></td>
+                                    <td v-text="v" class="color-black-4"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -95,7 +95,7 @@
                             <tr v-for="v, k in product.compare.detail">
                                 <td v-text="k" style="width: 50%"></td>
                                 <!-- 价格比国美高的是绿色，比国美低的是绿色 -->
-                                <td v-text="v" :class="{'color-black-5': product.compare.value==v, 'color-green': product.compare.value<v, 'color-red': product.compare.value>v}"></td>
+                                <td v-text="v" :class="{'color-black-4': product.compare.value==v, 'color-green': product.compare.value<v, 'color-red': product.compare.value>v}"></td>
                             </tr>
                         </table>
                     </div>

@@ -50,11 +50,13 @@
   }
 }
 
-
+/**
+    table-cell布局+vue循环渲染数据，可能导致在iphone6及以上手机浏览器卡死，原因不明
+*/
 .product-item{
   display: table;
   width: 100%;
-  border-bottom: 1px solid @border-color;
+  color: @color-black-2;
   &:last-child{
     border-bottom: none;
   }
@@ -63,10 +65,8 @@
     vertical-align: middle;
   }
   .img-wrap{
-    padding-top: 40pt;
-    padding-bottom: 40pt;
+    padding: 30pt 40pt 10pt 20pt;
     text-align: center;
-    background-color: @default-bg;
   }
   img{
     max-width: 240pt;
@@ -74,9 +74,10 @@
     text-align: center;
   }
   ul{
-    padding: 25pt 30pt;
-    background-color: #fff;
+    padding: 30pt 30pt 10pt 0;
     line-height: 38pt;
+    border-bottom: 1px solid @border-color;
+    background-color: #fff;
     li{
       font-weight: normal;
       margin-bottom: 20pt;
