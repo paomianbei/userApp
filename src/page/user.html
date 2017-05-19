@@ -41,14 +41,152 @@
         </div>
         <div class="main-content" v-show="!noInit && !expand">
             <div class="form">
-                <fieldset v-for="item in userData">
-                    <legend v-text="item.title">用户身份</legend>
-                    <template v-for="v, k in item.detail">
-                        <div class="form-group">
-                            <label v-text="k"></label>
-                            <span class="control-text" v-text="v"></span>
-                        </div>
-                    </template>
+                <fieldset>
+                    <legend>用户身份</legend>
+                    <div class="form-group">
+                        <label>省份</label>
+                        <span class="control-text" v-text="userData.province"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>城市</label>
+                        <span class="control-text" v-text="userData.city"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>小区</label>
+                        <span class="control-text" v-text="userData.community"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>是否内部员工</label>
+                        <span class="control-text" v-text="userData.is_staff"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>注册日期</label>
+                        <span class="control-text" v-text="userData.register_date"></span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>购买偏好</legend>
+                    <div class="form-group">
+                        <label>品类偏好（1天）</label>
+                        <span class="control-text" v-text="userData.lv5_cat3_action_favor_uid_1_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品类偏好（7天）</label>
+                        <span class="control-text" v-text="userData.lv5_cat3_action_favor_uid_7_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品类偏好（1个月）</label>
+                        <span class="control-text" v-text="userData.lv5_cat3_action_favor_uid_1_mont"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品类偏好（3个月）</label>
+                        <span class="control-text" v-text="userData.lv5_cat3_action_favor_uid_3_mont"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品牌偏好（1天）</label>
+                        <span class="control-text" v-text="userData.lv5_brand_action_favor_uid_1_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品牌偏好（7天）</label>
+                        <span class="control-text" v-text="userData.lv5_brand_action_favor_uid_7_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品牌偏好（1个月）</label>
+                        <span class="control-text" v-text="userData.lv5_brand_action_favor_uid_1_mon"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品牌偏好（3个月）</label>
+                        <span class="control-text" v-text="userData.lv5_brand_action_favor_uid_3_mon"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>产品词偏好（3天）</label>
+                        <span class="control-text" v-text="userData.lv5_prd_wrd_action_favor_3_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>产品词偏好（7天）</label>
+                        <span class="control-text" v-text="userData.lv5_prd_wrd_action_favor_7_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>产品词偏好（1个月）</label>
+                        <span class="control-text" v-text="userData.lv5_prd_wrd_action_favor_1_month"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>产品词偏好（3个月）</label>
+                        <span class="control-text" v-text="userData.lv5_prd_wrd_action_favor_3_month"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>最后一次购买时间</label>
+                        <span class="control-text" v-text="userData.lastbuydate"></span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>购买力</legend>
+                    <div class="form-group">
+                        <label>综合购买力</label>
+                        <span class="control-text" v-text="userData.buy_power"></span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>关注偏好</legend>
+                    <div class="form-group">
+                        <label>品类偏好（1天）</label>
+                        <span class="control-text" v-text="userData.lv6_cat3_favor_uid_1_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品类偏好（3天）</label>
+                        <span class="control-text" v-text="userData.lv6_cat3_favor_uid_3_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品类偏好（1个月）</label>
+                        <span class="control-text" v-text="userData.lv6_cat3_favor_uid_1_month"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品类偏好（3个月）</label>
+                        <span class="control-text" v-text="userData.lv6_cat3_favor_uid_3_month"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品牌偏好（1天）</label>
+                        <span class="control-text" v-text="userData.score_1_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品牌偏好（7天）</label>
+                        <span class="control-text" v-text="userData.score_7_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品牌偏好（1个月）</label>
+                        <span class="control-text" v-text="userData.score_1_month"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>品牌偏好（3个月）</label>
+                        <span class="control-text" v-text="userData.score_3_month"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>产品词偏好（3天）</label>
+                        <span class="control-text" v-text="userData.lv6_prd_wrd_favor_uid_3_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>产品词偏好（7天）</label>
+                        <span class="control-text" v-text="userData.lv6_prd_wrd_favor_uid_7_day"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>产品词偏好（1个月）</label>
+                        <span class="control-text" v-text="userData.lv6_prd_wrd_favor_uid_1_month"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>产品词偏好（3个月）</label>
+                        <span class="control-text" v-text="userData.lv6_prd_wrd_favor_uid_3_month"></span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>会员信息</legend>
+                    <div class="form-group">
+                        <label>生命周期</label>
+                        <span class="control-text" v-text="userData.life_circle"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>等级</label>
+                        <span class="control-text" v-text="userData.level"></span>
+                    </div>
                 </fieldset>
             </div>
         </div>

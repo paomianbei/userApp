@@ -1,11 +1,12 @@
-/**
+/**会员页面
  * Created by weikaiwei on 2017/4/19.
  */
 (function(){
     $(".table-list li:eq(0)").addClass("active");
-
     @@include("src/page/parts/!bindValue.js")
-    var vueSearch;
+    var ajax = axios.create({
+        baseURL: serverData.contextPath + "/"
+    }), vueSearch;
     //输入检索
     vueSearch = new Vue({
         el: ".main",
@@ -20,7 +21,6 @@
             styles: {
                 completeTop: 0
             },
-
             //  静态数据
             fromData: {
                 "13266350113": [
@@ -98,7 +98,7 @@
                     this.searchValue_ = v;
                     this.expand = true;
                     this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
-                    this.searchList = this.getHisData(v);
+                    this.getHisData(v);
                 }
             },
             noResult: {
@@ -111,7 +111,8 @@
         },
         methods: {
             getHisData: function(v){
-                var fromList = this.fromData,
+                return;
+                var vue = this, fromList = this.fromData,
                     arr = [];
                 if(v){
                     for(var k in fromList){
@@ -120,10 +121,14 @@
                         }
                     }
                 }
-                return arr;
+                vue.searchList = arr;
             },
             getUserData: function(phone){
-                return this.fromData[phone];
+                ajax.get("Member/memberInfo", {params: {phoneNomber: phone}}).then(function(data){
+                    var result = data.detailInfo || [];
+                    this.noResult = !result || result.length == 0;
+                    this.userData = result;
+                });
             },
             useItem: function(item){
                 item = $.trim(item);
@@ -136,18 +141,13 @@
                     this.noResult = "";
                     this.userData = null;
                 }else{
-
-                    var result = this.getUserData(this.searchValue);
-                    this.noResult = !result;
-
-                    this.userData = result;
+                    this.getUserData(this.searchValue);
                 }
-
                 vueFooter.exportData = {userPhoneNumber: item};
             },
             open: function () {
                 this.expand = true;
-                this.searchList = this.getHisData(this.searchValue);
+                this.getHisData(this.searchValue);
             },
             enter: function(){
                 this.useItem(this.searchValue);
