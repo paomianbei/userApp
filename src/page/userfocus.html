@@ -27,9 +27,6 @@
                     <label v-text="item"></label>
                 </div>
             </div>
-            <div class="tip-wrap" v-if="noResult" :style="{top: styles.completeTop}">
-                <div class="tip nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
-            </div>
             <div class="tip-welcome" v-show="noInit">HI，欢迎使用智能画像系统</div>
         </div>
         <div v-show="!noInit && !expand">
@@ -37,44 +34,46 @@
                 <div class="top-space"></div>
                 <div class="bg-white">
                     <ul class="tab-list">
-                        <li class="active"><a href="#info" data-toggle="tab">近期关注</a></li>
-                        <li><a href="#detail" data-toggle="tab">历史购买</a></li>
+                        <li :class="{active: activeIndex == 0}"><a href="javascript:;" @click="activeTab(0)">近期关注</a></li>
+                        <li :class="{active: activeIndex == 1}"><a href="javascript:;" @click="activeTab(1)">历史购买</a></li>
                     </ul>
                 </div>
                 <hr>
             </div>
             <div class="tab-content">
-                <div class="tab-pane fade in active" id="info">
-                    <template v-if="product.list">
-                        <figure class="product-item" v-for="item in product.list">
+                <div class="tab-pane fade in" :class="{active: activeIndex == 0}">
+                    <template v-if="product.data[0] && product.data[0].length">
+                        <figure class="product-item" v-for="item in product.data[0]">
                             <div class="img-wrap">
-                                <img :src="'../statics/images/demo/'+item.img" alt="">
+                                <img :src="item.img" alt="">
                             </div>
                             <ul>
-                                <li v-for="v, k in item">
-                                    <template v-if="k!='img'">
-                                        <span class="title" v-text="k"></span>：<span class="color-black-4" v-text="v"></span>
-                                    </template>
+                                <li v-for="v in item.list">
+                                    <span class="title" v-text="v[0]"></span>：<span class="color-black-4" v-text="v[1]"></span>
                                 </li>
                             </ul>
                         </figure>
                     </template>
+                    <div class="tip-wrap" v-else>
+                        <div class="tip nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
+                    </div>
                 </div>
-                <div class="tab-pane fade" id="detail">
-                    <template v-if="product.his">
-                        <figure class="product-item" v-for="item in product.his">
+                <div class="tab-pane fade in" :class="{active: activeIndex == 1}">
+                    <template v-if="product.data[1] && product.data[1].length">
+                        <figure class="product-item" v-for="item in product.data[1]">
                             <div class="img-wrap">
-                                <img :src="'../statics/images/demo/'+item.img" alt="">
+                                <img :src="item.img" alt="">
                             </div>
                             <ul>
-                                <li v-for="v, k in item">
-                                    <template v-if="k!='img'">
-                                        <span class="title" v-text="k"></span>：<span class="color-black-4" v-text="v"></span>
-                                    </template>
+                                <li v-for="v in item.list">
+                                    <span class="title" v-text="v[0]"></span>：<span class="color-black-4" v-text="v[1]"></span>
                                 </li>
                             </ul>
                         </figure>
                     </template>
+                    <div class="tip-wrap" v-else>
+                        <div class="tip nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
+                    </div>
                 </div>
             </div>
         </div>
