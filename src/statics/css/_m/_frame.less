@@ -1,9 +1,3 @@
-@indent-lr: 12pt;
-@title-size: 36pt;
-@header-height: 88pt;
-@footer-height: 98pt;
-@search-group-height: 86pt;
-
 body{
   font-family: "";
   font-size: 30pt;
@@ -42,6 +36,9 @@ header{
     font-size: @title-size;
     text-align: center;
   }
+  + div{
+    padding-top: @header-height;
+  }
 }
 footer{
   bottom: 0;
@@ -56,68 +53,14 @@ footer{
     padding-bottom: 10pt;
     font-size: 42pt;
   }
-  .table-list{
-    > li{
-      //vertical-align: bottom;
-    }
-  }
   .active a{
     color: #007aff;
   }
 }
 
 .main{
-  padding-top: @header-height;
   padding-bottom: @footer-height;
   height: 100%;
-}
-.search-group{
-  z-index: 20;
-  display: table;
-  padding: 0 15pt;
-  height: @search-group-height;
-  color: #666;
-  background-color: #fff;
-  border-top: 1px solid @border-color;
-  border-bottom: 1px solid @border-color;
-  .input-group{
-    @group-height: 56pt;
-    height: @group-height;
-    background-color: #e9e8e7;
-    vertical-align: middle;
-    .input-group-addon{
-      padding-left: 20pt;
-    }
-    .icon-clear{
-      @margin: 15pt;
-      @size: 28pt;
-      padding-right: 5pt;
-      font-size: @size;
-      line-height: @group-height;
-    }
-  }
-  .search-group-placement{
-    box-sizing: content-box;
-    width: 55pt;
-    padding-left: 28pt;
-    white-space: nowrap;
-  }
-  .qrcode-group{
-    font-size: 18pt;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    i{
-      display: block;
-      padding-bottom: 10pt;
-      font-size: 34pt;
-    }
-  }
-}
-
-hr{
-  margin: 0;
-  border-top-color: @border-color;
 }
 /*  业务 */
 .group-dropdown{
@@ -174,7 +117,6 @@ hr{
   background-color: #fff;
 }
 .main-content{
-  //height: calc(~'100%' - (@search-group-height));
   padding-top: @search-group-height;
   padding-bottom: @footer-height;
 }
@@ -183,57 +125,25 @@ hr{
   z-index: 9;
   padding-bottom: @footer-height;
   width: 100%;
-  min-height: 100%;
   background-color: #fff;
-}
-.tip-welcome{
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  font-size: 32pt;
-  text-align: center;
-  color: #636161;
-  transform: translateY(-50%);
 }
 
 @top-space-height: 20pt;
-@tab-height: 82pt;
-.tab-container{
+@tab-height: 92pt;
+header + .tab-container{
   top: @header-height + @search-group-height;
 }
+.tab-container{
+  top: @search-group-height;
+}
 .top-space{
-  height: @top-space-height;
+  padding-top: @top-space-height;
   background-color: @default-bg;
 }
 .tab-content{
-  //height: calc(~'100%' - (@search-group-height + @top-space-height + @tab-height));
   padding-top: @search-group-height + @top-space-height + @tab-height;
   padding-bottom: @footer-height;
 }
-.tip{
-  position: absolute;
-  left: 0;
-  padding-left: 130pt;
-  width: 100%;
-  height: @block-height;
-  line-height: @block-height;
-  font-size: 30pt;
-  color: #666;
-  background-color: #eaeaea;
-  &.nodata{
-    background-color: #ffdfe0;
-  }
-  &.unwork{
-  }
-  .icon-warning{
-    position: absolute;
-    left: 45pt;
-    font-size: 50pt;
-    line-height: inherit;
-    color: #f76160;
-  }
-}
-
 //不能使用伪元素，不能用 display:none; 或者 visibility: hidden;
 .vue-fix{
   position: absolute;

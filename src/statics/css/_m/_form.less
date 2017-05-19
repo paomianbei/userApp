@@ -86,7 +86,10 @@ form, .form{
 }
 .form-group{
   position: relative;
+  display: flex;
+  align-items: center;
   .control-label, >label:first-child{
+    flex: 1;
     color: @font-color;
     line-height: 1;
     .m-control-label;
@@ -95,8 +98,9 @@ form, .form{
     }
   }
   .control-text{
-    float: right;
+    flex: 2;
     color: @text-color;
+    text-align: right;
   }
   .control-group{
     display: inline-block;

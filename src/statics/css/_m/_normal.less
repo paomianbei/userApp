@@ -39,8 +39,26 @@ a {
 a:focus {
   outline: none;
 }
+
+a{
+  &, &:hover, &:focus{
+    color: inherit;
+    text-decoration: none;
+  }
+}
 label{
   margin-bottom: 0;// bootstrap 5px
+  font-weight: normal;
+}
+i{
+  font-style: normal;
+}
+hr{
+  position: relative;
+  z-index: 9999999; // 正常布局有时候会被其他组件遮挡住部分
+  margin: 0;
+  border: none;
+  border-top: 1px solid @border-color;
 }
 /********************************************/
 
@@ -55,6 +73,16 @@ label{
   overflow-y: auto;
 }
 
+.pull-left{
+  float: left;
+}
+.pull-right{
+  float: right;
+}
+
+.text-left{text-align: left}
+.text-right{text-align: right}
+.text-center{text-align: center}
 .full-height{
   height: 100%;
 }
@@ -83,29 +111,29 @@ label{
   position: relative!important;
 }
 .absolute{
-  position: absolute!important;
+  position: absolute;
 }
 .fixed{
   position: fixed;
   z-index: 1;
 }
 .inline{
-  display: inline!important;
+  display: inline;
 }
 .inline-block{
-  display: inline-block!important;
+  display: inline-block;
 }
 .block{
-  display: block!important;
+  display: block;
 }
 .display-table{
-  display: table!important;
+  display: table;
 }
 .hide{
-  display: none!important;
+  display: none;
 }
 .overflow-hidden{
-  overflow: hidden!important;
+  overflow: hidden;
 }
 .clearfix{
   &:after {
@@ -137,17 +165,4 @@ label{
   &:not(.btn){
     color: @disabled-color;
   }
-}
-a{
-  &, &:hover, &:focus{
-    color: inherit;
-    text-decoration: none;
-  }
-}
-label{
-  margin-bottom: 0;// bootstrap 5px
-  font-weight: normal;
-}
-i{
-  font-style: normal;
 }
