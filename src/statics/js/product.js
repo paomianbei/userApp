@@ -1,17 +1,16 @@
-/**
+/**商品页面
  * Created by weikaiwei on 2017/4/20.
  */
 (function () {
     $(".table-list li:eq(0)").addClass("active");
-
-    var vueFooter = new Vue({
+    var ajax = axios.create({
+        baseURL: serverData.contextPath + "/"
+    }), vueFooter = new Vue({
         el: "footer",
         data: {
             queryString: ""
         }
-    });
-    var vueSearch;
-    vueSearch = new Vue({
+    }), vueSearch = new Vue({
         el: ".main",
         data: {
             expand: false,
@@ -25,6 +24,7 @@
             },
             product: {
                 list: null,
+                listUrl: "",
                 detail: null,
                 compare: null
             },
@@ -32,7 +32,7 @@
             fromData: {
                 list: {
                     "3888280": {
-                        img: "item1.jpg",
+                        url: "item1.jpg",
                         "商品编号": "3888280",
                         "商品名称": "华为 HUAWEI Mate 9 4GB+32GB 全网通版 苍穹灰",
                         "库存": "1321",
@@ -41,7 +41,7 @@
                         "品牌": "华为"
                     },
                     "3749093": {
-                        img: "item2.jpg",
+                        url: "item2.jpg",
                         "商品编号": "3749093",
                         "商品名称": "华为 Mate 9 Pro 6GB+128GB版 琥珀金 移动联通电信4G手机 双卡双待",
                         "库存": "9999",
@@ -122,7 +122,7 @@
                     this.searchValue_ = v;
                     this.expand = true;
                     this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
-                    this.searchList = this.getHisData(v);
+                    this.getHisData(v);
                 }
             },
             noResult: {
@@ -134,7 +134,7 @@
             }
         },
         methods: {
-            getHisData: function(v){
+            getHisData: function(v){return
                 var fromDetail = this.fromData.detail, arr = [];
                 if(v){
                     for(var k in fromDetail){
@@ -145,10 +145,30 @@
                 }
                 return arr;
             },
-            getUserData: function(item){
-                var list = this.fromData.list[item], detail = this.fromData.detail[item], compare = this.fromData.compare[item];
-                if(!list || !detail || !compare)return null;
-                return {list: list, detail: detail, compare: compare};
+            getUserData: function(productId){
+                var vue = this;
+                ajax.get("Product/productInfo", {params: {productId: "9132955724-1122400107"}}).then(function(data){
+                    var fieldMap = [
+                            ["name", "商品名称"],
+                            ["id", "商品编码"],
+                            ["productType", "商品类型"],
+                            ["brand", "品牌"],
+                            ["catName", "分类名称"],
+                            ["catId", "分类id"],
+                            ["state", "上下架状态"],
+                            ["listPrice", "国美价"],
+                            ["skuNo", "sku编号"],
+                            ["color", "sku颜色"]
+                        ],
+                        arr = [], product = vue.product;
+                    data = data.productInfo;
+                    product.listUrl = data.url;
+                    fieldMap.forEach(function(item){
+                        data.hasOwnProperty(item[0]) && arr.push([item[1], data[item[0]]]);
+                    });
+                    product.list = arr;
+                    this.noResult = !arr.length;
+                });
             },
             useItem: function (item) {
                 item = $.trim(item);
@@ -163,23 +183,12 @@
                     this.product.detail = null;
                     this.product.compare = null;
                 }else{
-                    var result = this.getUserData(this.searchValue);
-                    if(result){
-                        this.noResult = false;
-                        this.product.list = result.list;
-                        this.product.detail = result.detail;
-                        this.product.compare = result.compare;
-                    }else{
-                        this.noResult = true;
-                        this.product.list = null;
-                        this.product.detail = null;
-                        this.product.compare = null;
-                    }
+                    this.getUserData(this.searchValue);
                 }
             },
             open: function () {
                 this.expand = true;
-                this.searchList = this.getHisData(this.searchValue);
+                this.getHisData(this.searchValue);
             },
             enter: function(){
                 this.useItem(this.searchValue);

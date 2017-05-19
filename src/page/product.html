@@ -30,9 +30,9 @@
                     </div>
                 </div>
                 <div class="search-group-placement" v-if="expand" @click="cancel">取消</div>
-                <div class="qrcode-group" v-else>
-                    <i class="icon-scan"></i>扫一扫
-                </div>
+                <!--<div class="qrcode-group" v-else>-->
+                    <!--<i class="icon-scan"></i>扫一扫-->
+                <!--</div>-->
             </div>
             <div class="autocomplete-list form" v-show="expand" :style="{paddingTop: styles.completeTop}">
                 <div class="form-group" v-for="item in searchList" @click="useItem(item)">
@@ -60,16 +60,14 @@
                 <div class="tab-pane fade in active" id="info">
                     <figure class="product-item v" v-if="product.list">
                         <div class="img-wrap">
-                            <img :src="'../statics/images/demo/'+product.list.img" alt="">
+                            <img :src="product.list.listUrl" alt="">
                         </div>
                         <div class="table-group">
                             <table v-if="product.list">
-                                <tbody v-for="v, k in product.list">
-                                    <tr v-if="k!='img'">
-                                        <td v-text="k"></td>
-                                        <td v-text="v" class="color-black-4"></td>
-                                    </tr>
-                                </tbody>
+                                <tr v-for="v in product.list">
+                                    <td v-text="v[0]"></td>
+                                    <td v-text="v[1]" class="color-black-4"></td>
+                                </tr>
                             </table>
                         </div>
                     </figure>
