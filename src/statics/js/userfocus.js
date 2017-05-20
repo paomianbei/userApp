@@ -8,55 +8,101 @@
         baseURL: serverData.contextPath + "/"
     }), DataWraper, vueSearch;
     /**数据包装对象*/
-    DataWraper = (function(){
-        var Wrapper;
-        // 用户关注
-        function obj_0(data){
-            this.img = null;
-            this.list = [];
-            this.wrap(data);
+
+    var ListData = (function(ajax){
+        function request(params){
+            var collection = this;
+            return ajax.get(this.url, {params: params}).then(function(data){
+                collection.setData(data.page);
+            });
         }
-        // 历史购买
-        function obj_1(data){
-            this.img = null;
-            this.list = [];
-            this.wrap(data);
+        /**需要实现request方法，作为远程查数据的方法
+         * */
+        function ListData(o){
+            this.clearData();
+            if(o){
+                for(var i in o){
+                    this[i] = o[i];
+                }
+            }
         }
-        obj_0.prototype.fields = [
-            ["sku_name", "商品名称"],
-            ["sku_id", "商品id"],
-            ["bhv_type", "行为类型"],
-            ["time", "操作时间"]
-        ];
-        obj_0.prototype.wrap = obj_1.prototype.wrap = function(data){
-            var img, list = [];
-            if(data){
-                // 商品图片信息
-                img = data.url;
-                this.fields.forEach(function(item){
-                    list.push([item[1], data[item[0]]]);
+        ListData.prototype = {
+            request: request,
+            load: function(p, o){
+                var params, i, dataCollection = this;
+                dataCollection.state.data = 1;
+                dataCollection.state.result = 1;
+                if(o){
+                    for(i in o){
+                        this[i] = o[i];
+                    }
+                }
+                params = {pageSize: this.pageSize, currPage: this.currPage < 1 ? i : this.currPage};
+                if(p){
+                    for(i in p){
+                        params[i] = p[i];
+                    }
+                }
+                return this.request(params).then(function(){
+                    dataCollection.state.data = 2;
+                }).catch(function(){
+                    dataCollection.state.data = 3;
                 });
+            },
+            /**刷新数据
+             * */
+            refresh: function(){
+                this.currPage = 1;
+                this.load();
+            },
+            /**加载下一页的数据
+             * */
+            nextPage: function(){
+                if(this.totalPage >= this.currPage + 1){
+                    this.currPage++;
+                    this.load();
+                }
+            },
+            setData: function(data){
+                var fields = this.fields, list = [];
+                if(data){
+                    this.currPage = data.currPage;
+                    this.totalCount = data.totalCount;
+                    this.totalPage = data.totalPage;
+                    list = data.list && data.list.map(function(item){
+                            // 图片信息和商品信息分开到img字段和list字段中
+                            var itemList = fields.map(function(field){
+                                return [field[1], item[field[0]]];
+                            });
+                            return {img: item.url, list: itemList};
+                        });
+                }
+                this.list = list;
+                this.state.result = list && list.length;
+            },
+            /**把数据设置成初始状态
+             * */
+            clearData: function(){
+                var defaults = {
+                    state: {
+                        data: 0, // 数据加载状态：0：未开始；1：加载中；2：加载成功；3：加载失败
+                        result: 0 // 是否有数据。0：无数据；1：有数据
+                    },
+                    // ajax: null, // 请求数据需要提供一个axios对象   不重置
+                    // url: null, // 不重置
+                    list: [],
+                    pageSize: 10,
+                    currPage: 1,
+                    totalCount: 0,
+                    totalPage: 0
+                }, i;
+                for(i in defaults){
+                    this[i] = defaults[i];
+                }
             }
-            this.img = img;
-            this.list = list;
-            return this;
         };
-        obj_1.prototype.fields = [
-            ["product_id", "产品id"],
-            ["sku_name", "商品名称"],
-            ["sku_id", "商品id"],
-            ["time", "购买时间"]
-        ];
-        Wrapper = [obj_0, obj_1];
-        return function(index, data){
-            if(data){
-                data = data instanceof Array ? data : [data];
-                return data.map(function(item){return new Wrapper[index](item)});
-            }else{
-                return null;
-            }
-        };
-    }());
+        return ListData;
+    }(ajax));
     vueSearch = new Vue({
         el: ".main",
         data: {
@@ -70,9 +116,32 @@
                 completeTop: 0
             },
             product: {
-                // 每个标签的数据查询过后（不论结果是否有数据），状态置为1
-                state: [],
-                data: []
+                data: [new ListData({
+                    url: "Member/memberAttention",
+                    fields: [
+                        ["sku_name", "商品名称"],
+                        ["sku_id", "商品id"],
+                        ["bhv_type", "行为类型"],
+                        ["time", "操作时间"]
+                    ]
+                }), new ListData({
+                    url: "Member/historySku",
+                    fields: [
+                        ["product_id", "产品id"],
+                        ["sku_name", "商品名称"],
+                        ["sku_id", "商品id"],
+                        ["submitted_date", "购买时间"]
+                    ]
+                })],
+                reset: function(){
+                    var dataCollection = this.data;
+                    for(var i in dataCollection){
+                        dataCollection[i] && dataCollection[i].clearData && dataCollection[i].clearData();
+                    }
+                },
+                imgError: function(item){
+                    item.img = null;
+                }
             },
             //  静态数据
             fromData: {
@@ -171,11 +240,6 @@
                 }
             }
         },
-        // watch: {
-        //     "product.result": function(){
-        //         console.log("111")
-        //     }
-        // },
         methods: {
             activeTab: function(index){
                 this.activeIndex = index || 0;
@@ -196,13 +260,9 @@
             },
             getUserData: function(phone){
                 var productData = this.product.data, index = this.activeIndex,
-                    state = this.product.state;
-                if(!state[index]){
-                    // ajax.get("Member/memberAttention", {params: {phoneNumber: phone}}).then(function(){
-                    // });
-                    var result = {"memberAttention":{"bhv_type":12,"sku_id":34343432,"sku_name":"空调","time":"2017-03-21"},"code":0};
-                    productData[index] = DataWraper(index, result.memberAttention);
-                    state[index] = 1;
+                    dataCollection = productData[index];
+                if(dataCollection.state.data != 2){
+                    dataCollection.load({phoneNumber: phone});
                 }
             },
             useItem: function(item){
@@ -214,11 +274,9 @@
                     this.noInit = true;
                 }else{
                     // 查询新数据之前，清空旧数据和状态
-                    this.product.state = [];
-                    this.product.data = [];
+                    this.product.reset();
                     this.getUserData(this.searchValue);
                 }
-
                 vueFooter.exportData = {userPhoneNumber: item}
             },
             // 点击搜索框，进入查询模式。并且，根据输入的内容自动补全一次

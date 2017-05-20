@@ -42,10 +42,11 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane fade in" :class="{active: activeIndex == 0}">
-                    <template v-if="product.data[0] && product.data[0].length">
-                        <figure class="product-item" v-for="item in product.data[0]">
+                    <template v-if="product.data[0].list && product.data[0].list.length">
+                        <figure class="product-item" v-for="item in product.data[0].list">
                             <div class="img-wrap">
-                                <img :src="item.img" alt="">
+                                <img :src="item.img" alt="" @error="product.imgError(item)" v-if="item.img">
+                                <img src="${rc.contextPath}/statics/images/default/lost.jpg" alt="" else>
                             </div>
                             <ul>
                                 <li v-for="v in item.list">
@@ -54,15 +55,19 @@
                             </ul>
                         </figure>
                     </template>
-                    <div class="tip-wrap" v-else>
+                    <div class="tip-wrap" v-if="(product.data[0].state.data==2||product.data[0].state.data==3)&& !product.data[0].state.result">
                         <div class="tip nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
+                    </div>
+                    <div class="tip-wrap" v-if="product.data[0].state.data==1">
+                        <div class="tip nodata">加载中，请耐心等待</div>
                     </div>
                 </div>
                 <div class="tab-pane fade in" :class="{active: activeIndex == 1}">
-                    <template v-if="product.data[1] && product.data[1].length">
-                        <figure class="product-item" v-for="item in product.data[1]">
+                    <template v-if="product.data[1].list && product.data[1].list.length">
+                        <figure class="product-item" v-for="item in product.data[1].list">
                             <div class="img-wrap">
-                                <img :src="item.img" alt="">
+                                <img :src="item.img" alt="" @error="product.imgError(item)" v-if="item.img">
+                                <img src="${rc.contextPath}/statics/images/default/lost.jpg" alt="" else>
                             </div>
                             <ul>
                                 <li v-for="v in item.list">
@@ -71,8 +76,11 @@
                             </ul>
                         </figure>
                     </template>
-                    <div class="tip-wrap" v-else>
+                    <div class="tip-wrap" v-if="(product.data[1].state.data==2||product.data[1].state.data==3)&& !product.data[1].state.result">
                         <div class="tip nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
+                    </div>
+                    <div class="tip-wrap" v-if="product.data[1].state.data==1">
+                        <div class="tip nodata">加载中，请耐心等待</div>
                     </div>
                 </div>
             </div>
