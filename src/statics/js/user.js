@@ -5,7 +5,7 @@
     $(".table-list li:eq(0)").addClass("active");
     @@include("src/page/parts/!bindValue.js")
     var ajax = axios.create({
-        baseURL: serverData.contextPath + "/"
+        baseURL: serverData.contextPath
     }), vueSearch;
 
     //输入检索

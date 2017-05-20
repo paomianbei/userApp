@@ -4,7 +4,7 @@
 (function () {
     $(".table-list li:eq(0)").addClass("active");
     var ajax = axios.create({
-        baseURL: serverData.contextPath + "/"
+        baseURL: serverData.contextPath
     }), vueFooter = new Vue({
         el: "footer",
         data: {
@@ -26,7 +26,11 @@
                 list: null,
                 listUrl: "",
                 detail: null,
-                compare: null
+                compare: null,
+                imgError: function(item){
+                    item.listUrl = null;
+                }
+
             },
             //  静态数据
             fromData: {
