@@ -7,6 +7,7 @@
     var ajax = axios.create({
         baseURL: serverData.contextPath + "/"
     }), vueSearch;
+
     //输入检索
     vueSearch = new Vue({
         el: ".main",
@@ -15,11 +16,45 @@
             searchList: [], 
             searchValue_: "",
             searchValue_pre: "",
-            userData: "",
-            noResult_: "",
-            noInit: true,
             styles: {
                 completeTop: 0
+            },
+            userData: {
+                url: "Member/memberInfo",
+                state: {
+                    data: 0, // 数据加载状态：0：未开始；1：加载中；2：加载成功；3：加载失败
+                    result: 0 // 是否有数据。0：无数据；1：有数据
+                },
+                data: {},
+                setData: function (data) {
+                    this.data = data || {};
+                },
+                load: function(p, o){
+                    var params, i, dataCollection = this;
+                    dataCollection.state.data = 1;
+                    if(o){
+                        for(i in o){
+                            this[i] = o[i];
+                        }
+                    }
+                    params = {pageSize: this.pageSize, currPage: this.currPage < 1 ? i : this.currPage};
+                    if(p){
+                        for(i in p){
+                            params[i] = p[i];
+                        }
+                    }
+                    return this.request(params).then(function(){
+                        dataCollection.state.data = 2;
+                    }).catch(function(){
+                        dataCollection.state.data = 3;
+                    });
+                },
+                request: function(params){
+                    var collection = this;
+                    return ajax.get(this.url, {params: params}).then(function(data){
+                        collection.setData(data.detailInfo);
+                    });
+                }
             },
             //  静态数据
             fromData: {
@@ -100,13 +135,6 @@
                     this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
                     this.getHisData(v);
                 }
-            },
-            noResult: {
-                get: function () {return this.noResult_},
-                set: function (v) {
-                    this.noResult_ = v;
-                    if(v)this.styles.completeTop = $(".search-group").offset().top + $(".search-group").outerHeight() + "px";
-                }
             }
         },
         methods: {
@@ -124,22 +152,14 @@
                 vue.searchList = arr;
             },
             getUserData: function(phone){
-                ajax.get("Member/memberInfo", {params: {phoneNomber: phone}}).then(function(data){
-                    var result = data.detailInfo || [];
-                    this.noResult = !result || result.length == 0;
-                    this.userData = result;
-                });
+                this.userData.load({phoneNumber: phone});
             },
             useItem: function(item){
                 item = $.trim(item);
-                this.noInit = false;
                 this.searchValue_ = this.searchValue_pre = item;
                 this.expand = false;
-
                 if(!item){
-                    this.noInit = true;
-                    this.noResult = "";
-                    this.userData = null;
+                    this.userData.setData(null);
                 }else{
                     this.getUserData(this.searchValue);
                 }
