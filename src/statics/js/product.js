@@ -157,12 +157,12 @@
                             ["id", "商品编码"],
                             ["productType", "商品类型"],
                             ["brand", "品牌"],
-                            ["catName", "分类名称"],
-                            ["catId", "分类id"],
-                            ["state", "上下架状态"],
-                            ["listPrice", "国美价"],
-                            ["skuNo", "sku编号"],
-                            ["color", "sku颜色"]
+                            // ["catName", "分类名称"],
+                            // ["catId", "分类id"],
+                            // ["state", "上下架状态"],
+                            ["listPrice", "国美价"]
+                            // ["skuNo", "sku编号"],
+                            // ["color", "sku颜色"]
                         ],
                         arr = [], product = vue.product;
                     data = data.productInfo;

@@ -55,6 +55,9 @@
                             </ul>
                         </figure>
                     </template>
+                    <div class="tip-wrap" v-if="(product.data[0].state.data==2||product.data[0].state.data==3)&& !product.data[0].state.result">
+                        <div class="tip nodata"><i class="icon-warning"></i>查无此数据，请检查是否输入正确</div>
+                    </div>
                     <div class="tip-wrap" v-if="product.data[0].state.data==1">
                         <div class="tip nodata">加载中，请耐心等待</div>
                     </div>
