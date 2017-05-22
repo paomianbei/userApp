@@ -151,7 +151,7 @@
             },
             getUserData: function(productId){
                 var vue = this;
-                ajax.get("Product/productInfo", {params: {productId: "9132955724-1122400107"}}).then(function(data){
+                ajax.get("Product/productInfo", {params: {productId: productId}}).then(function(data){
                     var fieldMap = [
                             ["name", "商品名称"],
                             ["id", "商品编码"],
