@@ -46,7 +46,7 @@
                         <figure class="product-item" v-for="item in product.data[0].list">
                             <div class="img-wrap">
                                 <img :src="item.img" alt="" @error="product.imgError(item)" v-if="item.img">
-                                <img src="${rc.contextPath}/statics/images/default/lost.jpg" alt="" else>
+                                <img src="${rc.contextPath}/statics/images/default/lost.jpg" alt="" v-else>
                             </div>
                             <ul>
                                 <li v-for="v in item.list">
@@ -64,7 +64,7 @@
                         <figure class="product-item" v-for="item in product.data[1].list">
                             <div class="img-wrap">
                                 <img :src="item.img" alt="" @error="product.imgError(item)" v-if="item.img">
-                                <img src="${rc.contextPath}/statics/images/default/lost.jpg" alt="" else>
+                                <img src="${rc.contextPath}/statics/images/default/lost.jpg" alt="" v-else>
                             </div>
                             <ul>
                                 <li v-for="v in item.list">
