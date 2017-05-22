@@ -74,30 +74,32 @@
                     </figure>
                 </div>
                 <div class="tab-pane fade" id="detail">
-                    <div class="table-group">
-                        <table class="table-group" v-if="product.detail">
-                            <tbody v-for="item in product.detail">
-                                <tr>
-                                    <td class="legend" colspan="2" v-text="item.title"></td>
-                                </tr>
-                                <tr v-for="v, k in item.detail">
-                                    <td v-text="k"></td>
-                                    <td v-text="v" class="color-black-4"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <div class="tip unwork"><i class="icon-warning"></i>此功能尚未开放</div>
+                    <!--<div class="table-group">-->
+                        <!--<table class="table-group" v-if="product.detail">-->
+                            <!--<tbody v-for="item in product.detail">-->
+                                <!--<tr>-->
+                                    <!--<td class="legend" colspan="2" v-text="item.title"></td>-->
+                                <!--</tr>-->
+                                <!--<tr v-for="v, k in item.detail">-->
+                                    <!--<td v-text="k"></td>-->
+                                    <!--<td v-text="v" class="color-black-4"></td>-->
+                                <!--</tr>-->
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    <!--</div>-->
                 </div>
                 <div class="tab-pane fade" id="compare">
-                    <div class="table-group" v-if="product.compare">
-                        <table class="table-group">
-                            <tr v-for="v, k in product.compare.detail">
-                                <td v-text="k" style="width: 50%"></td>
-                                <!-- 价格比国美高的是绿色，比国美低的是绿色 -->
-                                <td v-text="v" :class="{'color-black-4': product.compare.value==v, 'color-green': product.compare.value<v, 'color-red': product.compare.value>v}"></td>
-                            </tr>
-                        </table>
-                    </div>
+                    <div class="tip unwork"><i class="icon-warning"></i>此功能尚未开放</div>
+                    <!--<div class="table-group" v-if="product.compare">-->
+                        <!--<table class="table-group">-->
+                            <!--<tr v-for="v, k in product.compare.detail">-->
+                                <!--<td v-text="k" style="width: 50%"></td>-->
+                                <!--&lt;!&ndash; 价格比国美高的是绿色，比国美低的是绿色 &ndash;&gt;-->
+                                <!--<td v-text="v" :class="{'color-black-4': product.compare.value==v, 'color-green': product.compare.value<v, 'color-red': product.compare.value>v}"></td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
